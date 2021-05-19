@@ -1,0 +1,36 @@
+.about {
+  display: flex;
+  height: 624px;
+}
+
+.about__image {
+  height: 464px;
+  width: 464px;
+  border-radius: 1000px;
+  margin: 80px 56px 80px 104px;
+}
+
+.about__author {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__title {
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  line-height: 46px;
+  margin: 0;
+  padding: 130px 0 24px;
+}
+
+.about__subtitle {
+  width: 600px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0;
+  padding: 10px 0;
+}
