@@ -1,0 +1,32 @@
+.searchform {
+  display: inline-flex;
+  justify-content: center;
+  height: 64px;
+  margin: 44px 0 80px;
+}
+
+.searchform__input {
+  border-radius: 100px;
+  width: 500px;
+  border: transparent;
+  padding-left: 24px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.searchform__submit {
+  color: white;
+  border-radius: 100px;
+  background-color: #2f71e5;
+  width: 168px;
+  margin-left: -68px;
+  border: transparent;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
