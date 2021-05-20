@@ -1,0 +1,72 @@
+.newscard {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 576px;
+  padding: 0 32px;
+  margin: 0;
+}
+
+.newscard__save-flag {
+  background: url('../../images/flag.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  position: relative;
+  top: 64px;
+  left: 336px;
+}
+
+.newscard__save-flag_active {
+  background: url('../../images/flag-saved.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  position: relative;
+  top: 64px;
+  left: 336px;
+}
+
+.newscard__image {
+  height: 45%;
+  background: url('../../images/placeholder.png') no-repeat center;
+  border-radius: 10px 10px 0 0;
+}
+
+.newscard__information {
+  background-color: white;
+}
+.newscard__date {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 20px 24px 6px;
+}
+
+.newscard__title {
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  margin: 6px 24px 8px;
+}
+
+.newscard__subtitle {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 8px 24px 9px;
+}
+
+.newscard__source {
+  font-family: 'Roboto Slab';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #b6bcbf;
+  margin: 9px 24px 24px;
+}
