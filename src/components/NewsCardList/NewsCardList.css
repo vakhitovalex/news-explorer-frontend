@@ -1,0 +1,46 @@
+.newscards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newscards__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-width: 1278px;
+}
+
+.newscards__title {
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  padding: 80px 104px 32px;
+  margin: 0;
+  align-self: flex-start;
+}
+
+.newscards__expand {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  background-color: white;
+  width: 288px;
+  height: 64px;
+  border-radius: 80px;
+  border: none;
+  transition: 1s ease;
+  margin: 32px 0 80px;
+}
+
+.newscards__expand:hover {
+  background-color: #e8e8e8;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: 1s ease;
+}
+/* .newscards__expand:hover::after {
+  transition: 0.5s ease;
+} */

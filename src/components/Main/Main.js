@@ -1,10 +1,10 @@
 import './Main.css';
-import NewsCard from '../NewsCard/NewsCard';
+import NewsCardList from '../NewsCardList/NewsCardList';
 
 function Main(props) {
   return (
     <main className='main'>
-      <NewsCard />
+      <NewsCardList />
     </main>
   );
 }

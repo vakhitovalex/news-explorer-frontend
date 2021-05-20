@@ -12,17 +12,17 @@ function Header(props) {
           <NavLink
             exact
             to='/'
-            className='header__home'
-            activeClassName='header__home_active'
+            className='header__option'
+            activeClassName='header__option_active'
           >
             Home
           </NavLink>
           <NavLink
             to='/savedarticles'
-            className='header__saved-artciles'
-            activeClassName='header__saved-articles_active'
+            className='header__option header__option_nonactive'
+            activeClassName='header__option_active'
           >
-            {props.isLoggedIn ? 'Saved Articles' : ''}
+            Saved Articles
           </NavLink>
           <NavLink to='/signin' className='header__button-container'>
             <button className='header__button'>

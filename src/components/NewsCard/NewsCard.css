@@ -3,8 +3,9 @@
   flex-direction: column;
   width: 400px;
   height: 576px;
-  padding: 0 32px;
+  padding: 32px 8px;
   margin: 0;
+  cursor: pointer;
 }
 
 .newscard__save-flag {
@@ -68,5 +69,6 @@
   font-size: 16px;
   line-height: 20px;
   color: #b6bcbf;
-  margin: 9px 24px 24px;
+  padding: 9px 24px 24px;
+  margin: 0;
 }

@@ -20,8 +20,8 @@
 .header__name {
   font-family: 'Roboto Slab';
   font-weight: 700;
-  font-style: normal;
-  size: 20px;
+
+  font-size: 20px;
   line-height: 24px;
   margin: 0 104px;
 }
@@ -30,7 +30,7 @@
   margin: 0 104px;
 }
 
-.header__home {
+.header__option {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
@@ -42,9 +42,13 @@
   border-bottom: 3px transparent red;
 }
 
-.header__home_active {
+.header__option_active {
   padding-bottom: 26px;
   border-bottom: 3px solid white;
+}
+
+.header__option_nonactive {
+  color: #b6bcbf;
 }
 
 .header__button {
