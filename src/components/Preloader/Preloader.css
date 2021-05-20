@@ -1,0 +1,42 @@
+/* body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #333;
+
+  overflow: hidden;
+} */
+
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 282px;
+  justify-content: center;
+}
+
+.preloader__circle {
+  display: block;
+  width: 74px;
+  height: 74px;
+  border: 1px solid #1a1b22;
+  border-bottom-color: #d1d2d6;
+
+  border-radius: 50%;
+  animation: spin 0.75s infinite linear;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.preloader__text {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  margin: 0;
+  padding-top: 24px;
+}
