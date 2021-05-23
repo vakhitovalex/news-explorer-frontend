@@ -1,36 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import './Header.css';
+import '../Navigation/Navigation';
 import '../SearchForm/SearchForm';
 import SearchForm from '../SearchForm/SearchForm';
+import Navigation from '../Navigation/Navigation';
 function Header(props) {
   return (
     <header className='header'>
-      <nav className='header__nav'>
-        <p className='header__name'>NewsExplorer</p>
-        <ul className='header__options'>
-          <NavLink
-            exact
-            to='/'
-            className='header__option'
-            activeClassName='header__option_active'
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to='/savedarticles'
-            className='header__option header__option_nonactive'
-            activeClassName='header__option_active'
-          >
-            Saved Articles
-          </NavLink>
-          <NavLink to='/signin' className='header__button-container'>
-            <button className='header__button'>
-              {props.isLoggedIn ? 'Name' : 'Sign In'}
-            </button>
-          </NavLink>
-        </ul>
-      </nav>
+      <Navigation />
       <div className='header__main'>
         <h1 className='header__title'>What's going on in the world?</h1>
         <h2 className='header__subtitle'>

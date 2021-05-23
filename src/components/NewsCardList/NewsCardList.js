@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import './NewsCardList.css';
 import notFound from '../../images/not-found.svg';
