@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import placeholderImage from '../../images/placeholder.png';
 import './NewsCard.css';
@@ -8,19 +7,11 @@ import './NewsCard.css';
 function NewsCard(props) {
   const [isSaved, setIsSaved] = useState(false);
   const [isLoggedin, setIsLoggedIn] = useState(false);
-  const locate = useLocation();
 
   function saveCard() {
     setIsSaved(!isSaved);
   }
 
-  // if (isSaved && locate.pathname === '/saved-articles') {
-  //   saveButton className = 'newscard__delete';
-  // } else if (isSaved && locate.pathname !== '/saved-articles') {
-  //   saveButton.className = 'newscard__save-flag_active';
-  // } else {
-  //   saveButton.className = 'newscard__save-flag';
-  // }
   return (
     <div className='newscard'>
       <div
@@ -60,3 +51,11 @@ function NewsCard(props) {
 }
 
 export default NewsCard;
+
+// if (isSaved && locate.pathname === '/saved-articles') {
+//   saveButton className = 'newscard__delete';
+// } else if (isSaved && locate.pathname !== '/saved-articles') {
+//   saveButton.className = 'newscard__save-flag_active';
+// } else {
+//   saveButton.className = 'newscard__save-flag';
+// }
