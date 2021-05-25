@@ -9,7 +9,7 @@
 .newscards__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   max-width: 1278px;
 }
 
@@ -75,4 +75,39 @@
   color: #b6bcbf;
   padding: 16px 0 80px;
   margin: 0;
+}
+
+@media screen and (max-width: 925px) {
+  .newscards__list {
+    max-width: 704px;
+    flex-wrap: wrap;
+  }
+
+  .newscards__title {
+    font-size: 30px;
+    line-height: 34px;
+    padding: 40px 40px 16px;
+  }
+
+  .newscards__expand {
+    width: 240px;
+    height: 56px;
+  }
+
+  .results__image {
+    width: 48px;
+    height: 48px;
+    padding: 43px 0 8px;
+  }
+
+  .results__title {
+    font-size: 24px;
+    line-height: 26px;
+    padding: 8px 0;
+  }
+  .results__subtitle {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 8px 0 40px;
+  }
 }

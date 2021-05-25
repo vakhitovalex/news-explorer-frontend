@@ -40,3 +40,18 @@
   margin: 0;
   padding-top: 24px;
 }
+
+@media screen and (max-width: 925px) {
+  .preloader {
+    height: 200px;
+  }
+  .preloader__circle {
+    width: 60px;
+    height: 60px;
+  }
+  .preloader__text {
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 20px;
+  }
+}

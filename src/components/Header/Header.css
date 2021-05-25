@@ -29,3 +29,16 @@
   line-height: 24px;
   margin: 16px 0 44px;
 }
+
+@media screen and (max-width: 925px) {
+  .header__title {
+    max-width: 385px;
+    font-size: 36px;
+    line-height: 40px;
+    margin: 52px 0 8px;
+  }
+  .header__subtitle {
+    max-width: 452px;
+    margin: 8px 0 24px;
+  }
+}

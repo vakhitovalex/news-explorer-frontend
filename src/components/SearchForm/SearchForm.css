@@ -30,3 +30,23 @@
   font-size: 18px;
   line-height: 24px;
 }
+
+@media screen and (max-width: 925px) {
+  .searchform {
+    height: 56px;
+    margin: 24px 0 48px;
+  }
+
+  .searchform__input {
+    width: 360px;
+    padding-left: 24px;
+  }
+
+  .searchform__submit {
+    color: white;
+    border-radius: 100px;
+    background-color: #2f71e5;
+    width: 160px;
+    margin-left: -68px;
+  }
+}
