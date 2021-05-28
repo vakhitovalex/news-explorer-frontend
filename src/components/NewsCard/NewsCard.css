@@ -150,6 +150,11 @@
     top: 8px;
     right: 8px;
   }
+
+  .newscard__save-flag_active {
+    top: 8px;
+    right: 8px;
+  }
   .newscard__image {
     height: 45%;
   }
@@ -170,5 +175,30 @@
   }
   .newscard__source {
     margin: 6px 16px 6px;
+  }
+}
+
+@media screen and (max-width: 626px) {
+  .newscard {
+    max-width: 288px;
+    max-height: 420px;
+    margin: 16px;
+  }
+
+  .newscard__date {
+    margin: 16px 15px 5px;
+  }
+  .newscard__title {
+    max-height: 48px;
+    margin: 5px 16px 7px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .newscard__subtitle {
+    margin: 7px 16px 4px;
+    max-height: 88px;
+  }
+  .newscard__source {
+    margin: 4px 16px 16px;
   }
 }

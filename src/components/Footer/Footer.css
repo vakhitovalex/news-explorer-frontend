@@ -42,6 +42,20 @@
   }
 
   .footer__links {
+    justify-content: space-between;
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 626px) {
+  .footer {
+    height: 176px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .footer__links {
+    justify-content: space-between;
     width: 300px;
   }
 }
