@@ -173,9 +173,6 @@
     transition: ease 0.5s;
   }
 
-  /* .nav__checkbox:checked ~ .navbar {
-    height: 320px;
-  } */
   .nav__checkbox:checked ~ .navbar__options {
     display: flex;
     flex-direction: column;
@@ -184,17 +181,12 @@
     width: 100%;
     margin: 0;
     z-index: 1;
-    /* padding-left: 16px; */
     padding-top: 56px;
     left: -40px;
     top: 0px;
     background: #1a1b22;
-    height: 254px;
+    height: 176px;
   }
-
-  /* .nav__checkbox:checked ~ .navbar__option {
-    display: none;
-  } */
 
   .navbar__option_active {
     padding: 16px 0 22px;
