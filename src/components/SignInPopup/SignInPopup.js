@@ -15,16 +15,6 @@ function SignInPopup(props) {
     setPassword(e.target.value);
   }
 
-  function handleSubmit(e) {
-    // Prevent the browser from navigating to the form address
-    e.preventDefault();
-    // Pass the values of the managed components to the external handler
-    // props.onUpdateUser({
-    //   name,
-    //   about: description,
-    // });
-  }
-
   // useEffect(() => {
   //   setName(currentUser.name);
   //   setDescription(currentUser.about);
@@ -37,7 +27,6 @@ function SignInPopup(props) {
       link='Sign Up'
       isOpen={props.isOpen}
       onClose={props.onClose}
-      onSubmit={handleSubmit}
     >
       <label for='email' className='form__label'>
         Email

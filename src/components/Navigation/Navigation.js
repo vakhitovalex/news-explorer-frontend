@@ -1,4 +1,4 @@
-import { NavLink, useParams, useLocation } from 'react-router-dom';
+import { NavLink, Link, useParams, useLocation } from 'react-router-dom';
 import logout from '../../images/logout.svg';
 import './Navigation.css';
 
@@ -36,19 +36,14 @@ function Navigation(props) {
           </NavLink>
         </li>
         <li className='navbar__link navbar__link_button'>
-          <NavLink
-            to={
-              location.pathname === '/saved-articles' ? '/signout' : '/signin'
-            }
-            className='navbar__button-container'
-          >
-            {/* className={isLiked ? 'element__like-figure_active' : 'element__like-figure'} */}
+          <Link className='navbar__button-container'>
             <button
               className={
                 location.pathname === '/saved-articles'
                   ? 'navbar__button_loggedin'
                   : 'navbar__button'
               }
+              onClick={() => props.signinClick()}
             >
               {location.pathname === '/saved-articles' ? `Elise` : 'Sign In'}
               <div
@@ -59,7 +54,7 @@ function Navigation(props) {
                 }
               ></div>
             </button>
-          </NavLink>
+          </Link>
         </li>
 
         {/* <NavLink>
