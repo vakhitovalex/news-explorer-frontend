@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 
 import placeholderImage from '../../images/placeholder.png';
 import './NewsCard.css';
-// import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function NewsCard(props) {
   const [isSaved, setIsSaved] = useState(false);
-  const [isLoggedin, setIsLoggedIn] = useState(false);
 
   function saveCard() {
     setIsSaved(!isSaved);
@@ -52,6 +50,7 @@ function NewsCard(props) {
 
 export default NewsCard;
 
+// for future ref
 // if (isSaved && locate.pathname === '/saved-articles') {
 //   saveButton className = 'newscard__delete';
 // } else if (isSaved && locate.pathname !== '/saved-articles') {

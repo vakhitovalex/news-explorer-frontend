@@ -27,7 +27,10 @@ function PopupWithForm(props) {
             {props.title}
           </button>
           <div className='form__option'>
-            or <Link className='form__option-link'>{props.link}</Link>
+            or{' '}
+            <Link to={props.linkTo} className='form__option-link'>
+              {props.link}
+            </Link>
           </div>
         </form>
       </div>

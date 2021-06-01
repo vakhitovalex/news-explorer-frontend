@@ -18,6 +18,7 @@ function App(props) {
   function closePopup() {
     setIsSignInPopupOpen(false);
   }
+
   useEffect(() => {
     function closePopupWithButton(e) {
       if (e.key === 'Escape') {

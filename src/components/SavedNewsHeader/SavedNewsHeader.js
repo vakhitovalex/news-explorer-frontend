@@ -6,7 +6,6 @@ function SavedNewsHeader(props) {
   return (
     <header className='savednewsheader'>
       <Navigation />
-      {/* <SearchForm /> */}
     </header>
   );
 }

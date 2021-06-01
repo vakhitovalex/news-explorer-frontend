@@ -1,15 +1,26 @@
-import { NavLink, Link, useParams, useLocation } from 'react-router-dom';
-import logout from '../../images/logout.svg';
+import { useState } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation(props) {
   const location = useLocation();
+  const [isNavBarChecked, setIsNavBarChecked] = useState(false);
+
+  function handleCheck() {
+    setIsNavBarChecked(!isNavBarChecked);
+    console.log(isNavBarChecked);
+  }
   return (
     <nav className='navbar'>
       <p className='navbar__home'>NewsExplorer</p>
-      <input type='checkbox' className='nav__checkbox' id='nav__ham' />
-      <label for='nav__ham' className='nav__label'></label>
-      {/* </div> */}
+      <input
+        type='checkbox'
+        className='nav__checkbox'
+        id='nav__ham'
+        onChange={handleCheck}
+        checked={isNavBarChecked}
+      />
+      <label htmlFor='nav__ham' className='nav__label'></label>
       <ul className='navbar__options'>
         <li className='navbar__link'>
           <NavLink
@@ -36,14 +47,17 @@ function Navigation(props) {
           </NavLink>
         </li>
         <li className='navbar__link navbar__link_button'>
-          <Link className='navbar__button-container'>
+          <Link to='/' className='navbar__button-container'>
             <button
               className={
                 location.pathname === '/saved-articles'
                   ? 'navbar__button_loggedin'
                   : 'navbar__button'
               }
-              onClick={() => props.signinClick()}
+              onClick={() => {
+                props.signinClick();
+                handleCheck();
+              }}
             >
               {location.pathname === '/saved-articles' ? `Elise` : 'Sign In'}
               <div
@@ -56,19 +70,7 @@ function Navigation(props) {
             </button>
           </Link>
         </li>
-
-        {/* <NavLink>
-          {location.pathname === '/saved-articles' ? (
-            <button className='navbar__button'>Sign In</button>
-          ) : (
-            <button className='navbar__button_loggedin'>Elise</button>
-          )}
-        </NavLink> */}
       </ul>
-      {/* <div class='hamburger'>
-        <span class='bar'></span>
-        <span class='bar'></span>
-      </div> */}
     </nav>
   );
 }
