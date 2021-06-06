@@ -125,19 +125,8 @@
   }
 
   .navbar__button {
-    font-family: 'Roboto';
-    font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
     padding: 8px 12px;
-    width: 128px;
-    height: 48px;
-    border: 1px solid #ffffff;
-    box-sizing: border-box;
-    border-radius: 100px;
-    background-color: transparent;
-    color: white;
-    cursor: pointer;
   }
 }
 
@@ -200,7 +189,9 @@
   }
 
   .navbar__button-container {
-    align-self: stretch;
+    /* align-self: stretch; */
+    width: 80vw;
+    justify-content: space-around;
   }
 
   .navbar__link {
@@ -208,10 +199,7 @@
     align-items: center;
     margin-left: 16px;
   }
-  .navbar__button {
-    width: 288px;
-    margin-left: -16px;
-  }
+
   .navbar__link_button {
     align-self: center;
   }
