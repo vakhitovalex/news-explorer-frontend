@@ -3,8 +3,13 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation(props) {
-  const location = useLocation();
+  // const location = pathname;
+  const savedArticlesUrl = useLocation().pathname;
   const [isNavBarChecked, setIsNavBarChecked] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [navTheme, setTheme] = useState('dark');
+
+  console.log(savedArticlesUrl);
 
   function handleCheck() {
     setIsNavBarChecked(!isNavBarChecked);
@@ -15,12 +20,12 @@ function Navigation(props) {
       <p className='navbar__home'>NewsExplorer</p>
       <input
         type='checkbox'
-        className='nav__checkbox'
-        id='nav__ham'
+        className='navbar__checkbox'
+        id='navbar__hamburger'
         onChange={handleCheck}
         checked={isNavBarChecked}
       />
-      <label htmlFor='nav__ham' className='nav__label'></label>
+      <label htmlFor='navbar__hamburger' className='navbar__label'></label>
       <ul className='navbar__options'>
         <li className='navbar__link'>
           <NavLink
@@ -35,7 +40,11 @@ function Navigation(props) {
         <li className='navbar__link'>
           <NavLink
             to='/saved-articles'
-            className='navbar__option navbar__option_nonactive'
+            className={
+              isLoggedIn
+                ? 'navbar__option navbar__option_nonactive'
+                : 'navbar__option_hidden'
+            }
             activeClassName='navbar__option_active_dark'
             activeStyle={{
               color: 'black',
@@ -47,27 +56,38 @@ function Navigation(props) {
           </NavLink>
         </li>
         <li className='navbar__link navbar__link_button'>
-          <Link to='/' className='navbar__button-container'>
+          <Link
+            to='/'
+            className={`navbar__button-container ${
+              savedArticlesUrl === '/saved-articles'
+                ? 'navbar__button-container_dark'
+                : ''
+            }`}
+          >
             <button
-              className={
-                location.pathname === '/saved-articles'
+              className={`navbar__button ${
+                savedArticlesUrl === '/saved-articles'
                   ? 'navbar__button_loggedin'
-                  : 'navbar__button'
-              }
+                  : ''
+              }`}
               onClick={() => {
                 props.signinClick();
                 handleCheck();
               }}
             >
-              {location.pathname === '/saved-articles' ? `Elise` : 'Sign In'}
-              <div
-                className={
-                  location.pathname === '/saved-articles'
-                    ? 'navbar__logout'
-                    : ''
-                }
-              ></div>
+              {isLoggedIn ? `Elise` : 'Sign In'}
             </button>
+            <div
+              className={
+                isLoggedIn &&
+                `navbar__logout
+              ${
+                savedArticlesUrl === '/saved-articles' && 'navbar__logout_white'
+              }`
+              }
+              //   ${location.pathname !== '/saved-articles' && 'navbar__logout_white'}
+              // }
+            ></div>
           </Link>
         </li>
       </ul>
