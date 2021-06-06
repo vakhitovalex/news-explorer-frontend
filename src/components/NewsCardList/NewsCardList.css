@@ -9,7 +9,7 @@
 .newscards__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   max-width: 1278px;
 }
 

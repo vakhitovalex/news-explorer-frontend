@@ -5,6 +5,7 @@ import About from '../About/About';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
+import SavedArticles from '../SavedArticles/SavedArticles';
 import SignInPopup from '../SignInPopup/SignInPopup';
 import './App.css';
 
@@ -46,6 +47,7 @@ function App(props) {
             <Footer />
           </Route>
           <Route path='/saved-articles'>
+            <SavedArticles signinClick={openSignInPopup} />
             <SavedNews />
             <Footer />
           </Route>

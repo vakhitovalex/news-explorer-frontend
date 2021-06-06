@@ -5,7 +5,6 @@ import './SavedNews.css';
 function SavedNews() {
   return (
     <section className='savednews'>
-      <Navigation />
       <div className='newscards'>
         <div className='newscards__list'>
           <NewsCard />
