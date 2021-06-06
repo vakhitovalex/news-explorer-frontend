@@ -37,24 +37,22 @@ function App(props) {
   }, []);
 
   return (
-    <div className='page__container'>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/'>
-            <Header signinClick={openSignInPopup} />
-            <Main />
-            <About />
-            <Footer />
-          </Route>
-          <Route path='/saved-articles'>
-            <SavedArticles signinClick={openSignInPopup} />
-            <SavedNews />
-            <Footer />
-          </Route>
-        </Switch>
-        <SignInPopup isOpen={isSignInPopupOpen} onClose={closePopup} />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/'>
+          <Header signinClick={openSignInPopup} />
+          <Main />
+          <About />
+          <Footer />
+        </Route>
+        <Route path='/saved-articles'>
+          <SavedArticles signinClick={openSignInPopup} />
+          <SavedNews />
+          <Footer />
+        </Route>
+      </Switch>
+      <SignInPopup isOpen={isSignInPopupOpen} onClose={closePopup} />
+    </BrowserRouter>
   );
 }
 
