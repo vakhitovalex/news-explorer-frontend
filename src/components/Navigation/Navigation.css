@@ -154,6 +154,10 @@
     height: 24px;
     margin-right: 24px;
   }
+
+  .navbar__label_dark {
+    background-image: url('../../images/hamburger-dark.svg');
+  }
   .navbar__checkbox:checked + label {
     position: absolute;
     width: 24px;
@@ -163,6 +167,10 @@
     background-image: url('../../images/close.svg');
     z-index: 2;
     transition: ease 0.5s;
+  }
+
+  .navbar__checkbox_dark:checked + label {
+    background-image: url('../../images/close-dark.svg');
   }
 
   .navbar__checkbox:checked ~ .navbar__options {
@@ -178,6 +186,10 @@
     top: 0px;
     background: #1a1b22;
     height: 176px;
+  }
+
+  .navbar__checkbox:checked ~ .navbar__options_dark {
+    background: whitesmoke;
   }
 
   .navbar__option_active {
@@ -202,6 +214,7 @@
 
   .navbar__link_button {
     align-self: center;
+    margin-top: 22px;
   }
 
   /* .nav__label:checked {

@@ -19,13 +19,25 @@ function Navigation(props) {
       <p className='navbar__home'>NewsExplorer</p>
       <input
         type='checkbox'
-        className='navbar__checkbox'
+        className={`navbar__checkbox
+        ${
+          savedArticlesUrl === '/saved-articles' ? 'navbar__checkbox_dark' : ''
+        }`}
         id='navbar__hamburger'
         onChange={handleCheck}
         checked={isNavBarChecked}
       />
-      <label htmlFor='navbar__hamburger' className='navbar__label'></label>
-      <ul className='navbar__options'>
+      <label
+        htmlFor='navbar__hamburger'
+        className={`navbar__label
+        ${savedArticlesUrl === '/saved-articles' ? 'navbar__label_dark' : ''}`}
+      ></label>
+      <ul
+        className={`navbar__options
+        ${
+          savedArticlesUrl === '/saved-articles' ? 'navbar__options_dark' : ''
+        }`}
+      >
         <li className='navbar__link'>
           <NavLink
             exact
