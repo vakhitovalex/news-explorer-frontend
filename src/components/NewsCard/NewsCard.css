@@ -21,7 +21,7 @@
   background: white;
   border-radius: 10px;
   padding: 8px 22px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -38,20 +38,6 @@
   top: 24px;
   right: 24px;
   cursor: pointer;
-  /* border: 0;
-  position: absolute;
-  top: 24px;
-  left: 180px;
-  cursor: pointer;
-  background: white;
-  border-radius: 10px;
-  padding: 8px 22px;
-  font-family: Roboto;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 24px;
-
-  cursor: default; */
 }
 
 .newscard__save-flag {
@@ -100,7 +86,7 @@
   background-color: white;
 }
 .newscard__date {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
@@ -108,7 +94,7 @@
 }
 
 .newscard__title {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 26px;
   line-height: 30px;
@@ -116,7 +102,7 @@
 }
 
 .newscard__subtitle {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
@@ -126,7 +112,7 @@
 }
 
 .newscard__source {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;

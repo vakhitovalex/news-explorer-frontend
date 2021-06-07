@@ -46,7 +46,7 @@
 }
 
 .modal__title {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 28px;
@@ -60,7 +60,7 @@
 }
 
 .form__label {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
@@ -69,7 +69,7 @@
 }
 
 .form__input {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -86,7 +86,7 @@
 .form__submit {
   width: 358px;
   height: 64px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -100,7 +100,7 @@
 .form__option {
   align-self: center;
   margin: 16px 0 28px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;

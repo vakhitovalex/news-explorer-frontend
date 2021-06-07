@@ -10,7 +10,7 @@
 }
 
 .saved__title {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -20,7 +20,7 @@
 }
 
 .saved__subtitle {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
@@ -34,7 +34,7 @@
   margin: 15px 0 56px;
   line-height: 24px;
   font-size: 18px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
 }
 

@@ -15,7 +15,7 @@
 }
 
 .newscards__title {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 40px;
   line-height: 46px;
@@ -25,7 +25,7 @@
 }
 
 .newscards__expand {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -52,7 +52,6 @@
 }
 
 .results__image {
-  /* background: url('../../images/not-found.svg'); */
   width: 96px;
   height: 96px;
   padding: 86px 0 16px;
@@ -60,7 +59,7 @@
 }
 
 .results__title {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 26px;
   line-height: 30px;
@@ -69,7 +68,7 @@
 }
 
 .results__subtitle {
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
