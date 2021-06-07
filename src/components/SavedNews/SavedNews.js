@@ -1,5 +1,4 @@
 import NewsCard from '../NewsCard/NewsCard';
-import Navigation from '../Navigation/Navigation';
 import './SavedNews.css';
 
 function SavedNews() {
