@@ -29,7 +29,16 @@
 }
 
 .newscard__remove {
+  background: url('../../images/trashbin.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border: 0;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+  /* border: 0;
   position: absolute;
   top: 24px;
   left: 180px;
@@ -41,8 +50,8 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 24px;
-  display: none;
-  cursor: default;
+
+  cursor: default; */
 }
 
 .newscard__save-flag {
@@ -144,6 +153,11 @@
     top: 8px;
     left: 8px;
     padding: 8px 20px;
+  }
+
+  .newscard__remove {
+    top: 8px;
+    right: 8px;
   }
 
   .newscard__save-flag {

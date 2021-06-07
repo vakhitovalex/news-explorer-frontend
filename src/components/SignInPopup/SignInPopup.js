@@ -38,7 +38,6 @@ function SignInPopup(props) {
         name='email'
       />
 
-      {/* <span id='profile-info-error' className='form__error'></span> */}
       <label htmlFor='password' className='form__label'>
         Password
       </label>

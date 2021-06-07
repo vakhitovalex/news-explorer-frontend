@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import placeholderImage from '../../images/placeholder.png';
 import './NewsCard.css';
 
 function NewsCard(props) {
   const [isSaved, setIsSaved] = useState(false);
+  const savedArticlesUrl = useLocation().pathname;
 
   function saveCard() {
     setIsSaved(!isSaved);
@@ -20,15 +22,17 @@ function NewsCard(props) {
         <div className='newscard__description'>
           <span>Nature</span>
         </div>
-        <div className='newscard__remove'>
-          <span>Remove from saved</span>
-        </div>
-        <button
-          className={
-            isSaved ? 'newscard__save-flag_active' : 'newscard__save-flag'
-          }
-          onClick={() => saveCard()}
-        ></button>
+
+        {savedArticlesUrl === '/saved-articles' ? (
+          <button className='newscard__remove'></button>
+        ) : (
+          <button
+            className={
+              isSaved ? 'newscard__save-flag_active' : 'newscard__save-flag'
+            }
+            onClick={() => saveCard()}
+          ></button>
+        )}
       </div>
 
       <div className='newscard__information'>
