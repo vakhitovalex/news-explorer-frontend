@@ -28,7 +28,13 @@ function PopupWithForm(props) {
           </button>
           <div className='form__option'>
             or{' '}
-            <Link to={props.linkTo} className='form__option-link'>
+            <Link
+              onClick={() => {
+                props.onClose();
+                props.onLinkClick();
+              }}
+              className='form__option-link'
+            >
               {props.link}
             </Link>
           </div>

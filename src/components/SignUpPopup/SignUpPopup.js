@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm.js';
 
-function SignInPopup(props) {
+function SignUpPopup(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,9 +15,9 @@ function SignInPopup(props) {
 
   return (
     <PopupWithForm
-      name='signin'
-      title='Sign In'
-      link='Sign Up'
+      name='signup'
+      title='Sign Up'
+      link='Sign In'
       isOpen={props.isOpen}
       onClose={props.onClose}
       onLinkClick={props.onLinkClick}
@@ -57,4 +57,4 @@ function SignInPopup(props) {
   );
 }
 
-export default SignInPopup;
+export default SignUpPopup;

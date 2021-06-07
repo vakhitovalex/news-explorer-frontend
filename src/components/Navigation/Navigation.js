@@ -6,7 +6,7 @@ function Navigation(props) {
   // const location = pathname;
   const savedArticlesUrl = useLocation().pathname;
   const [isNavBarChecked, setIsNavBarChecked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   console.log(savedArticlesUrl);
 

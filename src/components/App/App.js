@@ -7,17 +7,23 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import SavedArticles from '../SavedArticles/SavedArticles';
 import SignInPopup from '../SignInPopup/SignInPopup';
+import SignUpPopup from '../SignUpPopup/SignUpPopup';
 import './App.css';
 
 function App(props) {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
+  const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
 
   function openSignInPopup() {
     setIsSignInPopupOpen(true);
   }
+  function openSignUpPopup() {
+    setIsSignUpPopupOpen(true);
+  }
 
   function closePopup() {
     setIsSignInPopupOpen(false);
+    setIsSignUpPopupOpen(false);
   }
 
   useEffect(() => {
@@ -51,7 +57,16 @@ function App(props) {
           <Footer />
         </Route>
       </Switch>
-      <SignInPopup isOpen={isSignInPopupOpen} onClose={closePopup} />
+      <SignInPopup
+        isOpen={isSignInPopupOpen}
+        onClose={closePopup}
+        onLinkClick={openSignUpPopup}
+      />
+      <SignUpPopup
+        isOpen={isSignUpPopupOpen}
+        onClose={closePopup}
+        onLinkClick={openSignInPopup}
+      />
     </BrowserRouter>
   );
 }
