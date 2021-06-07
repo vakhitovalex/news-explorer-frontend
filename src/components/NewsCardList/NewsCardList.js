@@ -8,13 +8,13 @@ import NewsCard from '../NewsCard/NewsCard';
 function NewsCardList() {
   return (
     <section className='newscards'>
-      <p className='newscards__title'>Search results</p>
-      <div className='newscards__list'>
+      <h2 className='newscards__title'>Search results</h2>
+      <ul className='newscards__list'>
         <NewsCard />
         <NewsCard />
         <NewsCard />
         <NewsCard />
-      </div>
+      </ul>
       <button className='newscards__expand'>Show more</button>
       <div className='results'>
         <img
@@ -22,10 +22,10 @@ function NewsCardList() {
           alt='nothing found'
           src={notFound}
         ></img>
-        <p className='results__title'>Nothing Found</p>
-        <p className='results__subtitle'>
+        <h3 className='results__title'>Nothing Found</h3>
+        <h4 className='results__subtitle'>
           Sorry, but nothing matched your search terms.
-        </p>
+        </h4>
       </div>
     </section>
   );

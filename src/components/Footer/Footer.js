@@ -7,35 +7,43 @@ function Footer() {
   return (
     <div className='footer'>
       <p className='footer__copyright'>© 2021 Supersite, Powered by News API</p>
-      <div className='footer__links'>
-        <Link to='/' className='footer__link'>
-          Home
-        </Link>
-        <a
-          target='_blank'
-          href='https://practicum.yandex.com/'
-          className='footer__link'
-          rel='noreferrer'
-        >
-          Practicum by Yandex
-        </a>
-        <a
-          target='_blank'
-          href='https://github.com/vakhitovalex'
-          className='footer__logo'
-          rel='noreferrer'
-        >
-          <img src={github_logo} alt='github logo'></img>
-        </a>
-        <a
-          target='_blank'
-          href='https://facebook.com/'
-          className='footer__logo'
-          rel='noreferrer'
-        >
-          <img src={facebook_logo} alt='facebook logo'></img>
-        </a>
-      </div>
+      <ul className='footer__links'>
+        <li>
+          <Link to='/' className='footer__link'>
+            Home
+          </Link>
+        </li>
+        <li>
+          <a
+            target='_blank'
+            href='https://practicum.yandex.com/'
+            className='footer__link'
+            rel='noreferrer'
+          >
+            Practicum by Yandex
+          </a>
+        </li>
+        <li>
+          <a
+            target='_blank'
+            href='https://github.com/vakhitovalex'
+            className='footer__logo'
+            rel='noreferrer'
+          >
+            <img src={github_logo} alt='github logo'></img>
+          </a>
+        </li>
+        <li>
+          <a
+            target='_blank'
+            href='https://facebook.com/'
+            className='footer__logo'
+            rel='noreferrer'
+          >
+            <img src={facebook_logo} alt='facebook logo'></img>
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }
