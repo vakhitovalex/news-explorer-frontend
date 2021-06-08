@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   max-width: 1278px;
-  margin: 0 40px;
+  margin: 0;
 }
 
 .newscards__title {
