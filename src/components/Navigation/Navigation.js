@@ -6,7 +6,7 @@ function Navigation(props) {
   // const location = pathname;
   const savedArticlesUrl = useLocation().pathname;
   const [isNavBarChecked, setIsNavBarChecked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   console.log(savedArticlesUrl);
 
@@ -50,6 +50,7 @@ function Navigation(props) {
         </li>
         <li className='navbar__link'>
           <NavLink
+            exact
             to='/saved-articles'
             className={
               isLoggedIn
@@ -57,11 +58,11 @@ function Navigation(props) {
                 : 'navbar__option_hidden'
             }
             activeClassName='navbar__option_active_dark'
-            activeStyle={{
-              color: 'black',
-              borderBottom: '3px solid black',
-              paddingBottom: '26px',
-            }}
+            // activeStyle={{
+            //   color: 'black',
+            //   borderBottom: '3px solid black',
+            //   paddingBottom: '26px',
+            // }}
           >
             Saved Articles
           </NavLink>
