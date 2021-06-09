@@ -26,7 +26,7 @@ function SignInPopup(props) {
         Email
       </label>
       <input
-        id='email'
+        id='loginEmail'
         type='email'
         value={email}
         onChange={handleEmailChange}
@@ -42,7 +42,7 @@ function SignInPopup(props) {
         Password
       </label>
       <input
-        id='password'
+        id='loginPassword'
         type='password'
         value={password}
         onChange={handlePasswordChange}

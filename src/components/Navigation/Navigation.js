@@ -3,16 +3,12 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation(props) {
-  // const location = pathname;
   const savedArticlesUrl = useLocation().pathname;
   const [isNavBarChecked, setIsNavBarChecked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  console.log(savedArticlesUrl);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleCheck() {
     setIsNavBarChecked(!isNavBarChecked);
-    console.log(isNavBarChecked);
   }
   return (
     <nav className='navbar'>
@@ -58,11 +54,6 @@ function Navigation(props) {
                 : 'navbar__option_hidden'
             }
             activeClassName='navbar__option_active_dark'
-            // activeStyle={{
-            //   color: 'black',
-            //   borderBottom: '3px solid black',
-            //   paddingBottom: '26px',
-            // }}
           >
             Saved Articles
           </NavLink>
@@ -91,14 +82,13 @@ function Navigation(props) {
             </button>
             <div
               className={
-                isLoggedIn &&
-                `navbar__logout
+                isLoggedIn
+                  ? `navbar__logout
               ${
                 savedArticlesUrl === '/saved-articles' && 'navbar__logout_white'
               }`
+                  : undefined
               }
-              //   ${location.pathname !== '/saved-articles' && 'navbar__logout_white'}
-              // }
             ></div>
           </Link>
         </li>

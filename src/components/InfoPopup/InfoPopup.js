@@ -18,6 +18,7 @@ function InfoPopup(props) {
         </h3>
 
         <Link
+          to='/'
           onClick={() => {
             props.onClose();
             props.onLinkClick();

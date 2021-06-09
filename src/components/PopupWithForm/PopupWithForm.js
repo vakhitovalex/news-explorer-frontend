@@ -34,6 +34,7 @@ function PopupWithForm(props) {
           <div className='form__option'>
             or{' '}
             <Link
+              to='/'
               onClick={() => {
                 props.onClose();
                 props.onLinkClick();

@@ -114,6 +114,8 @@
 .form__option-link {
   color: #2f71e5;
   text-decoration: none;
+  /* background: none;
+  border: none; */
 }
 
 @media screen and (max-width: 626px) {
