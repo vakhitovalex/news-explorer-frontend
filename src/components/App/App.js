@@ -8,11 +8,29 @@ import SavedNews from '../SavedNews/SavedNews';
 import SavedArticles from '../SavedArticles/SavedArticles';
 import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
+import InfoPopup from '../InfoPopup/InfoPopup';
 import './App.css';
 
 function App(props) {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
+  const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+
+  // function handleRegister(password, email) {
+  //   auth
+  //     .register(password, email)
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         setIsRegistered(true);
+  //         setIsInfoPopupOpen(true);
+  //       } else {
+  //         setIsRegistered(false);
+  //         setIsInfoPopupOpen(true);
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
   function openSignInPopup() {
     setIsSignInPopupOpen(true);
@@ -24,6 +42,7 @@ function App(props) {
   function closePopup() {
     setIsSignInPopupOpen(false);
     setIsSignUpPopupOpen(false);
+    setIsInfoPopupOpen(false);
   }
 
   useEffect(() => {
@@ -65,6 +84,12 @@ function App(props) {
       <SignUpPopup
         isOpen={isSignUpPopupOpen}
         onClose={closePopup}
+        onLinkClick={openSignInPopup}
+      />
+      <InfoPopup
+        onClose={closePopup}
+        isRegistered={isRegistered}
+        isOpen={isInfoPopupOpen}
         onLinkClick={openSignInPopup}
       />
     </BrowserRouter>

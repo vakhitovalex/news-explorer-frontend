@@ -23,7 +23,12 @@ function PopupWithForm(props) {
           noValidate
         >
           {props.children}
-          <button className='form__submit' type='submit' disabled>
+          <button
+            className='form__submit'
+            type='submit'
+            disabled
+            onSubmit={props.handleSubmit}
+          >
             {props.title}
           </button>
           <div className='form__option'>

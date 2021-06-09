@@ -52,6 +52,11 @@
   line-height: 28px;
   margin: 34px 0 22px 36px;
 }
+.modal__link {
+  color: #2f71e5;
+  text-decoration: none;
+  margin: 0 0 51px 36px;
+}
 
 .form {
   display: flex;

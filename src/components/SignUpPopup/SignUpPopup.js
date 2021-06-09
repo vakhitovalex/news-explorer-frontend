@@ -4,6 +4,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm.js';
 function SignUpPopup(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -11,6 +12,9 @@ function SignUpPopup(props) {
 
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+  }
+  function handleUsernameChange(e) {
+    setUsername(e.target.value);
   }
 
   return (
@@ -51,7 +55,22 @@ function SignUpPopup(props) {
         required
         minLength='2'
         maxLength='200'
-        name='profileAbout'
+        name='password'
+      />
+      <label htmlFor='username' className='form__label'>
+        Username
+      </label>
+      <input
+        id='username'
+        type='username'
+        value={username}
+        onChange={handleUsernameChange}
+        className='form__input form__input_type_username'
+        placeholder='Enter your username'
+        required
+        minLength='2'
+        maxLength='200'
+        name='username'
       />
     </PopupWithForm>
   );
