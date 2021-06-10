@@ -7,41 +7,45 @@ function Footer() {
   return (
     <div className='footer'>
       <p className='footer__copyright'>© 2021 Supersite, Powered by News API</p>
-      <ul className='footer__links'>
-        <li>
-          <Link to='/' className='footer__link'>
-            Home
-          </Link>
+      <ul className='footer__combined'>
+        <li className='footer__links'>
+          <li>
+            <Link to='/' className='footer__link'>
+              Home
+            </Link>
+          </li>
+          <li>
+            <a
+              target='_blank'
+              href='https://practicum.yandex.com/'
+              className='footer__link'
+              rel='noreferrer'
+            >
+              Practicum by Yandex
+            </a>
+          </li>
         </li>
-        <li>
-          <a
-            target='_blank'
-            href='https://practicum.yandex.com/'
-            className='footer__link'
-            rel='noreferrer'
-          >
-            Practicum by Yandex
-          </a>
-        </li>
-        <li>
-          <a
-            target='_blank'
-            href='https://github.com/vakhitovalex'
-            className='footer__logo'
-            rel='noreferrer'
-          >
-            <img src={github_logo} alt='github logo'></img>
-          </a>
-        </li>
-        <li>
-          <a
-            target='_blank'
-            href='https://facebook.com/'
-            className='footer__logo'
-            rel='noreferrer'
-          >
-            <img src={facebook_logo} alt='facebook logo'></img>
-          </a>
+        <li className='footer__logos'>
+          <li>
+            <a
+              target='_blank'
+              href='https://github.com/vakhitovalex'
+              className='footer__logo'
+              rel='noreferrer'
+            >
+              <img src={github_logo} alt='github logo'></img>
+            </a>
+          </li>
+          <li>
+            <a
+              target='_blank'
+              href='https://facebook.com/'
+              className='footer__logo'
+              rel='noreferrer'
+            >
+              <img src={facebook_logo} alt='facebook logo'></img>
+            </a>
+          </li>
         </li>
       </ul>
     </div>
