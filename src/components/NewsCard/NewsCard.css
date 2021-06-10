@@ -120,16 +120,23 @@
   margin: 9px 24px 24px;
 }
 
-@media screen and (max-width: 1252px) {
+@media screen and (max-width: 1439px) {
   .newscard {
-    width: 310px;
-    margin: 16px 4px;
+    width: 350px;
+    margin: 16px 8px;
   }
 }
 
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 1156px) {
   .newscard {
-    max-width: 224px;
+    width: 275px;
+    margin: 16px 6px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .newscard {
+    width: 224px;
     max-height: 420px;
     margin: 16px 4px;
   }

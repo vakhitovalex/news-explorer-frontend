@@ -10,8 +10,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1278px;
-  margin: 0;
+  /* max-width: 1248px; */
+  margin: 0 96px;
   padding: 0;
 }
 
@@ -20,8 +20,8 @@
   font-weight: 400;
   font-size: 40px;
   line-height: 46px;
-  padding: 80px 104px 32px;
-  margin: 0;
+  margin: 80px 104px 32px;
+  padding: 0;
   align-self: flex-start;
 }
 
@@ -78,16 +78,40 @@
   margin: 0;
 }
 
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 1292px) {
   .newscards__list {
-    max-width: 704px;
-    flex-wrap: wrap;
+    margin: 0 40px;
+  }
+}
+
+/* @media screen and (max-width: 1292px) {
+  .newscards__list {
+    margin: 0 30px;
+  }
+} */
+
+/* @media screen and (max-width: 1156px) {
+  .newscards__list {
+    margin: 0 30px;
+  }
+} */
+/*
+.newscards__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 96px;
+} */
+
+@media screen and (max-width: 940px) {
+  .newscards__list {
+    margin: 0 36px;
   }
 
   .newscards__title {
     font-size: 30px;
     line-height: 34px;
-    padding: 40px 40px 16px;
+    margin: 40px 40px 16px;
   }
 
   .newscards__expand {
@@ -113,16 +137,22 @@
   }
 }
 
-@media screen and (max-width: 626px) {
+@media screen and (max-width: 767px) {
   .newscards__list {
-    max-width: 704px;
+    margin: 0 34px;
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 526px) {
+  .newscards__list {
     flex-direction: column;
   }
 
   .newscards__title {
     font-size: 30px;
     line-height: 34px;
-    padding: 32px 16px 29px;
+    margin: 32px 16px 29px;
   }
 
   .newscards__expand {
