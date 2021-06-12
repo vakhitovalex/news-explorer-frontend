@@ -9,12 +9,12 @@ function Footer() {
       <p className='footer__copyright'>© 2021 Supersite, Powered by News API</p>
       <ul className='footer__combined'>
         <li className='footer__links'>
-          <li>
+          <div>
             <Link to='/' className='footer__link'>
               Home
             </Link>
-          </li>
-          <li>
+          </div>
+          <div>
             <a
               target='_blank'
               href='https://practicum.yandex.com/'
@@ -23,10 +23,10 @@ function Footer() {
             >
               Practicum by Yandex
             </a>
-          </li>
+          </div>
         </li>
         <li className='footer__logos'>
-          <li>
+          <div>
             <a
               target='_blank'
               href='https://github.com/vakhitovalex'
@@ -35,8 +35,8 @@ function Footer() {
             >
               <img src={github_logo} alt='github logo'></img>
             </a>
-          </li>
-          <li>
+          </div>
+          <div>
             <a
               target='_blank'
               href='https://facebook.com/'
@@ -45,7 +45,7 @@ function Footer() {
             >
               <img src={facebook_logo} alt='facebook logo'></img>
             </a>
-          </li>
+          </div>
         </li>
       </ul>
     </div>
