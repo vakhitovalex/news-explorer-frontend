@@ -26,8 +26,7 @@ function PopupWithForm(props) {
           <button
             className='form__submit'
             type='submit'
-            disabled
-            onSubmit={props.handleSubmit}
+            disabled={!props.buttonState}
           >
             {props.title}
           </button>

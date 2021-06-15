@@ -12,8 +12,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 #root {
-  width: 100vw;
   max-width: 1440px;
+  width: 100%;
 }
 
 /* code {
