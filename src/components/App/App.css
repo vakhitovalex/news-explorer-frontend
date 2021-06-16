@@ -1,8 +1,12 @@
-.App {
-  text-align: center;
+.app {
+  /* width: 1440px; */
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +39,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
