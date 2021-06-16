@@ -5,7 +5,7 @@ import './Navigation.css';
 function Navigation(props) {
   const savedArticlesUrl = useLocation().pathname;
   const [isNavBarChecked, setIsNavBarChecked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   function handleCheck() {
     setIsNavBarChecked(!isNavBarChecked);
