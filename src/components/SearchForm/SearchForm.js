@@ -9,7 +9,6 @@ function SearchForm(props) {
   function handleSearchSubmit(e) {
     e.preventDefault();
     props.searchForNewsArticles(props.searchKeyword);
-    console.log(props.searchKeyword);
   }
 
   return (

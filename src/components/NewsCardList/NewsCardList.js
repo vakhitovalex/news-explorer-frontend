@@ -5,15 +5,23 @@ import notFound from '../../images/not-found.svg';
 
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList() {
+function NewsCardList(props) {
+  console.log(props.newsCards);
   return (
     <section className='newscards'>
       <h2 className='newscards__title'>Search results</h2>
       <ul className='newscards__list'>
+        {props.newsCards.map((newsCard) => (
+          <NewsCard
+            key={newsCard.url}
+            newsCard={newsCard}
+            searchKeyword={props.searchKeyword}
+          />
+        ))}
+        {/* <NewsCard />
         <NewsCard />
         <NewsCard />
-        <NewsCard />
-        <NewsCard />
+        <NewsCard /> */}
       </ul>
       <button className='newscards__expand'>Show more</button>
       <div className='results'>

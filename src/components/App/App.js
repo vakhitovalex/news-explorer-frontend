@@ -58,13 +58,18 @@ function App(props) {
 
   const [searchKeyword, setSearchKeyword] = useState('');
 
+  const [newsCards, setNewsCards] = useState([]);
+  const [searchInProgress, setSearchInProgress] = useState(false);
+
   function searchForNewsArticles(searchKeyword) {
+    setSearchInProgress(true);
     newsApi
       .getNewsArticles(searchKeyword)
       .then((data) => {
-        console.log(data);
-        return;
+        setNewsCards(data.articles);
+        setSearchInProgress(false);
       })
+
       .catch((err) => console.log(err));
   }
 
@@ -83,7 +88,11 @@ function App(props) {
             // }}
             // setSearchKeyword={setSearchKeyword}
           />
-          <Main />
+          <Main
+            newsCards={newsCards}
+            searchKeyword={searchKeyword}
+            searchInProgress={searchInProgress}
+          />
           <About />
           <Footer />
         </Route>

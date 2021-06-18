@@ -5,8 +5,14 @@ import Preloader from '../Preloader/Preloader';
 function Main(props) {
   return (
     <main className='main'>
-      <NewsCardList />
-      <Preloader />
+      {props.searchInProgress ? (
+        <Preloader />
+      ) : (
+        <NewsCardList
+          newsCards={props.newsCards}
+          searchKeyword={props.searchKeyword}
+        />
+      )}
     </main>
   );
 }
