@@ -10,6 +10,7 @@ import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
 import InfoPopup from '../InfoPopup/InfoPopup';
 import './App.css';
+import NewsApi from '../../utils/NewsApi';
 
 function App(props) {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -17,20 +18,14 @@ function App(props) {
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
-  // function handleRegister(password, email) {
-  //   auth
-  //     .register(password, email)
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         setIsRegistered(true);
-  //         setIsInfoPopupOpen(true);
-  //       } else {
-  //         setIsRegistered(false);
-  //         setIsInfoPopupOpen(true);
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+  const newsApi = new NewsApi({
+    baseUrl: 'https://newsapi.org/v2/everything?q=',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+    apiKey: '254138f371d945dd9250e8efa292f7d4',
+  });
 
   function openSignInPopup() {
     setIsSignInPopupOpen(true);
@@ -61,11 +56,33 @@ function App(props) {
     };
   }, []);
 
+  const [searchKeyword, setSearchKeyword] = useState('');
+
+  function searchForNewsArticles(searchKeyword) {
+    newsApi
+      .getNewsArticles(searchKeyword)
+      .then((data) => {
+        console.log(data);
+        return;
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
-          <Header signinClick={openSignInPopup} />
+          <Header
+            signinClick={openSignInPopup}
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+            searchForNewsArticles={searchForNewsArticles}
+            // onSubmit={() => {
+            //   requestNewsArticles();
+            //   console.log('smth');
+            // }}
+            // setSearchKeyword={setSearchKeyword}
+          />
           <Main />
           <About />
           <Footer />
@@ -97,3 +114,18 @@ function App(props) {
 }
 
 export default App;
+
+// function handleRegister(password, email) {
+//   auth
+//     .register(password, email)
+//     .then((res) => {
+//       if (res.ok) {
+//         setIsRegistered(true);
+//         setIsInfoPopupOpen(true);
+//       } else {
+//         setIsRegistered(false);
+//         setIsInfoPopupOpen(true);
+//       }
+//     })
+//     .catch((err) => console.log(err));
+// }
