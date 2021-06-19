@@ -12,6 +12,8 @@ function NewsCard(props) {
     setIsSaved(!isSaved);
   }
 
+  const date = new Date();
+  console.log(date);
   return (
     <li className='newscard'>
       <div
@@ -36,7 +38,17 @@ function NewsCard(props) {
       </div>
 
       <div className='newscard__information'>
-        <p className='newscard__date'>{props.newsCard.publishedAt}</p>
+        <p className='newscard__date'>
+          {date.toLocaleString(
+            'en-US',
+            {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            },
+            props.newsCard.publishedAt
+          )}
+        </p>
         <h3 className='newscard__title'>{props.newsCard.title}</h3>
         <h4 className='newscard__subtitle'>{props.newsCard.description}</h4>
         <p className='newscard__source'>{props.newsCard.source.name}</p>
