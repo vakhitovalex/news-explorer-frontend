@@ -60,6 +60,7 @@ function App(props) {
 
   const [newsCards, setNewsCards] = useState([]);
   const [searchInProgress, setSearchInProgress] = useState(false);
+  const [searchMade, setSearchMade] = useState(false);
 
   function searchForNewsArticles(searchKeyword) {
     setSearchInProgress(true);
@@ -68,6 +69,7 @@ function App(props) {
       .then((data) => {
         setNewsCards(data.articles);
         setSearchInProgress(false);
+        setSearchMade(true);
       })
 
       .catch((err) => console.log(err));
@@ -92,6 +94,7 @@ function App(props) {
             newsCards={newsCards}
             searchKeyword={searchKeyword}
             searchInProgress={searchInProgress}
+            searchMade={searchMade}
           />
           <About />
           <Footer />

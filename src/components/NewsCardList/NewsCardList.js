@@ -9,7 +9,9 @@ function NewsCardList(props) {
   console.log(props.newsCards);
   return (
     <section className='newscards'>
-      <h2 className='newscards__title'>Search results</h2>
+      <h2 className={NewsCard ? 'newscards__title' : undefined}>
+        Search results
+      </h2>
       <ul className='newscards__list'>
         {props.newsCards.map((newsCard) => (
           <NewsCard

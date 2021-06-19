@@ -3,7 +3,7 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 import Preloader from '../Preloader/Preloader';
 
 function Main(props) {
-  return (
+  return props.searchMade ? (
     <main className='main'>
       {props.searchInProgress ? (
         <Preloader />
@@ -14,6 +14,8 @@ function Main(props) {
         />
       )}
     </main>
+  ) : (
+    ''
   );
 }
 export default Main;
