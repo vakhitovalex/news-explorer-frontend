@@ -63,13 +63,14 @@ function App(props) {
   const [searchMade, setSearchMade] = useState(false);
 
   function searchForNewsArticles(searchKeyword) {
+    setSearchMade(true);
     setSearchInProgress(true);
     newsApi
       .getNewsArticles(searchKeyword)
       .then((data) => {
         setNewsCards(data.articles);
+
         setSearchInProgress(false);
-        setSearchMade(true);
       })
 
       .catch((err) => console.log(err));
