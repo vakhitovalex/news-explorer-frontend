@@ -1,16 +1,19 @@
 .newscards {
   display: flex;
   flex-direction: column;
+  align-self: center;
   align-items: center;
   background-color: #f5f6f7;
-  width: 100%;
+  /* width: 95%; */
 }
 
 .newscards__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  /* max-width: 1248px; */
+  display: grid;
+  max-width: 1232px;
+  grid-template-columns: repeat(3, 33%);
+  /* grid-template-rows: repeat(3, 33%); */
+  grid-gap: 16px;
+  grid-template-rows: auto;
   margin: 0 96px;
   padding: 0;
 }
@@ -81,33 +84,12 @@
 @media screen and (max-width: 1292px) {
   .newscards__list {
     margin: 0 40px;
+    /* grid-template-rows: repeat(3, 33%); */
+    grid-gap: 8px;
   }
 }
 
-/* @media screen and (max-width: 1292px) {
-  .newscards__list {
-    margin: 0 30px;
-  }
-} */
-
-/* @media screen and (max-width: 1156px) {
-  .newscards__list {
-    margin: 0 30px;
-  }
-} */
-/*
-.newscards__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 96px;
-} */
-
 @media screen and (max-width: 940px) {
-  .newscards__list {
-    margin: 0 36px;
-  }
-
   .newscards__title {
     font-size: 30px;
     line-height: 34px;
@@ -137,15 +119,9 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 576px) {
   .newscards__list {
-    margin: 0 34px;
-    justify-content: space-evenly;
-  }
-}
-
-@media screen and (max-width: 526px) {
-  .newscards__list {
+    display: flex;
     flex-direction: column;
   }
 
