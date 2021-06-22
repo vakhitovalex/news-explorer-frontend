@@ -30,7 +30,7 @@ function NewsCardList(props) {
       <h2 className={NewsCard ? 'newscards__title' : undefined}>
         Search results
       </h2>
-      {newsChunks ? (
+      {newsChunks.length ? (
         <ul className='newscards__list'>
           {newsChunks[0].map((newsCard) => (
             <NewsCard
