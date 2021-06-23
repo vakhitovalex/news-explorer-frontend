@@ -37,6 +37,7 @@ function NewsCardList(props) {
               key={newsCard.url}
               newsCard={newsCard}
               searchKeyword={props.searchKeyword}
+              isLoggedIn={props.isLoggedIn}
             />
           ))}
         </ul>

@@ -56,7 +56,7 @@
   cursor: pointer;
 }
 
-.newscard__save-flag_active {
+.newscard__save-flag_saved {
   background: url('../../images/flag-saved.svg');
   width: 40px;
   height: 40px;
@@ -66,6 +66,42 @@
   top: 24px;
   right: 24px;
   cursor: pointer;
+}
+
+.newscard__save-flag_nonactive {
+  background: url('../../images/flag-nonactive.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+}
+
+.newscard__message {
+  visibility: hidden;
+  border: 0;
+  position: absolute;
+  top: 24px;
+  right: 68px;
+  cursor: pointer;
+  background: white;
+  border-radius: 10px;
+  padding: 8px 22px;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: default;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+.newscard__save-flag_nonactive:hover ~ .newscard__message {
+  visibility: visible;
+  opacity: 1;
 }
 
 .newscard__delete {

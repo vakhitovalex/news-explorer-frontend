@@ -28,11 +28,15 @@ function NewsCard(props) {
         ) : (
           <button
             className={
-              isSaved ? 'newscard__save-flag_active' : 'newscard__save-flag'
+              props.isLoggedIn
+                ? `newscard__save-flag
+                ${isSaved && 'newscard__save-flag_saved'}`
+                : `newscard__save-flag_nonactive`
             }
             onClick={() => saveCard()}
           ></button>
         )}
+        <span className='newscard__message'>Sign in to save</span>
       </div>
 
       <div className='newscard__information'>

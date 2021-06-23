@@ -17,6 +17,7 @@ function App(props) {
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
@@ -96,6 +97,7 @@ function App(props) {
             searchKeyword={searchKeyword}
             searchInProgress={searchInProgress}
             searchMade={searchMade}
+            isLoggedIn={isLoggedIn}
           />
           <About />
           <Footer />

@@ -12,6 +12,7 @@ function Main(props) {
           <NewsCardList
             newsCards={props.newsCards}
             searchKeyword={props.searchKeyword}
+            isLoggedIn={props.isLoggedIn}
           />
         ))}
     </main>
