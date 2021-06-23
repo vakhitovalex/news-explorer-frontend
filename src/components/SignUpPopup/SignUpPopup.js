@@ -47,6 +47,7 @@ function SignUpPopup(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    props.handleRegister(email, password, username);
   }
 
   return (

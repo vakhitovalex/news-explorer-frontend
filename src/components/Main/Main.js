@@ -13,6 +13,7 @@ function Main(props) {
             newsCards={props.newsCards}
             searchKeyword={props.searchKeyword}
             isLoggedIn={props.isLoggedIn}
+            handleArticleSave={props.handleArticleSave}
           />
         ))}
     </main>

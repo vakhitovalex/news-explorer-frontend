@@ -11,13 +11,18 @@ import SignUpPopup from '../SignUpPopup/SignUpPopup';
 import InfoPopup from '../InfoPopup/InfoPopup';
 import './App.css';
 import NewsApi from '../../utils/NewsApi';
+import MainApi from '../../utils/MainApi';
+import * as auth from '../../utils/auth';
 
 function App(props) {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
 
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
@@ -77,6 +82,58 @@ function App(props) {
       .catch((err) => console.log(err));
   }
 
+  const mainApi = new MainApi({
+    baseUrl: 'http://localhost:3002',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization' `Bearer ${token}`
+    },
+  });
+
+  function handleArticleSave(newsCard) {
+    // Check one more time if this card was already liked
+    // const isSaved = article.likes.some((i) => i === currentUser._id);
+    // Send a request to the API and getting the updated card data
+    mainApi
+      .addArticle({
+        keyword: searchKeyword,
+        title: newsCard.title,
+        text: newsCard.description,
+        date: newsCard.publishedAt,
+        source: newsCard.source.name,
+        link: newsCard.url,
+        image: newsCard.urlToImage,
+      })
+      .then((info) => {
+        console.log(info);
+      })
+      //   // Create a new array based on the existing one and putting a new card into it
+      //   const newCards = cards.map((item) =>
+      //     item._id === card._id ? newCard : item
+      //   );
+      //   // Update the state
+      //   setCards(newCards);
+      // })
+      .catch((err) => {
+        console.log(err + ' in like api request');
+      });
+  }
+
+  function handleRegister(email, password, name) {
+    auth
+      .register(email, password, name)
+      .then((res) => {
+        if (res.ok) {
+          setIsRegistered(true);
+          setIsInfoPopupOpen(true);
+        } else {
+          setIsRegistered(false);
+          setIsInfoTooltipOpen(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -98,6 +155,7 @@ function App(props) {
             searchInProgress={searchInProgress}
             searchMade={searchMade}
             isLoggedIn={isLoggedIn}
+            handleArticleSave={handleArticleSave}
           />
           <About />
           <Footer />

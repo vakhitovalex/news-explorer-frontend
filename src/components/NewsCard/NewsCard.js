@@ -10,6 +10,7 @@ function NewsCard(props) {
 
   function saveCard() {
     setIsSaved(!isSaved);
+    props.handleArticleSave(props.newsCard);
   }
 
   return (
@@ -33,7 +34,7 @@ function NewsCard(props) {
                 ${isSaved && 'newscard__save-flag_saved'}`
                 : `newscard__save-flag_nonactive`
             }
-            onClick={() => saveCard()}
+            onClick={props.isLoggedIn ? () => saveCard() : undefined}
           ></button>
         )}
         <span className='newscard__message'>Sign in to save</span>
