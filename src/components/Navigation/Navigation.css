@@ -76,7 +76,7 @@
   background-color: transparent;
   color: white;
   cursor: pointer;
-  padding: 0;
+  padding: 0 0 0 10px;
 }
 
 .navbar__button_loggedin {
@@ -90,6 +90,7 @@
   height: 24px;
   margin: 0;
   align-self: center;
+  padding-right: 8px;
 }
 .navbar__logout_white {
   background: url(../../images/logout.svg) no-repeat;
