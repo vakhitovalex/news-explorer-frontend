@@ -1,17 +1,16 @@
 import NewsCard from '../NewsCard/NewsCard';
+import NewsCardList from '../NewsCardList/NewsCardList';
 import './SavedNews.css';
 
-function SavedNews() {
+function SavedNews(props) {
   return (
     <section className='savednews'>
-      <div className='newscards'>
-        <div className='newscards__list'>
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-        </div>
-      </div>
+      <NewsCardList
+        newsCards={props.newsCards}
+        searchKeyword={props.searchKeyword}
+        isLoggedIn={props.isLoggedIn}
+        handleArticleSave={props.handleArticleSave}
+      />
     </section>
   );
 }

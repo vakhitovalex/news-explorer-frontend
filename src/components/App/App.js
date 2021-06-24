@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
+import Navigation from '../Navigation/Navigation';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
@@ -211,8 +212,17 @@ function App(props) {
             <Footer />
           </Route>
           <Route path='/saved-articles'>
+            <Navigation
+              isLoggedIn={isLoggedIn}
+              signinClick={props.signinClick}
+              handleLogout={props.handleLogout}
+            />
             <SavedArticles signinClick={openSignInPopup} />
-            <SavedNews />
+            <SavedNews
+              newsCards={newsCards}
+              searchKeyword={searchKeyword}
+              isLoggedIn={isLoggedIn}
+            />
             <Footer />
           </Route>
         </Switch>
