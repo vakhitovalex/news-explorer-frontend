@@ -31,6 +31,7 @@ function SignInPopup(props) {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    props.handleLogin(email, password);
   }
 
   return (

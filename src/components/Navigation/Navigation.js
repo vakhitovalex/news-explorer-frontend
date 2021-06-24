@@ -5,7 +5,7 @@ import './Navigation.css';
 function Navigation(props) {
   const savedArticlesUrl = useLocation().pathname;
   const [isNavBarChecked, setIsNavBarChecked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleCheck() {
     setIsNavBarChecked(!isNavBarChecked);
@@ -49,7 +49,7 @@ function Navigation(props) {
             exact
             to='/saved-articles'
             className={
-              isLoggedIn
+              props.isLoggedIn
                 ? 'navbar__option navbar__option_nonactive'
                 : 'navbar__option_hidden'
             }
@@ -78,11 +78,11 @@ function Navigation(props) {
                 handleCheck();
               }}
             >
-              {isLoggedIn ? `Elise` : 'Sign In'}
+              {props.isLoggedIn ? `Elise` : 'Sign In'}
             </button>
             <div
               className={
-                isLoggedIn
+                props.isLoggedIn
                   ? `navbar__logout
               ${
                 savedArticlesUrl === '/saved-articles' && 'navbar__logout_white'

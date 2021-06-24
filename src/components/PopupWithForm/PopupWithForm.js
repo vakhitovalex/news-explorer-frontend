@@ -16,7 +16,6 @@ function PopupWithForm(props) {
         ></button>
         <h3 className='modal__title'>{props.title}</h3>
         <form
-          action=''
           className='form'
           name={props.name}
           onSubmit={props.onSubmit}

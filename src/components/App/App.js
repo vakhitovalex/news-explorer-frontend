@@ -19,10 +19,11 @@ function App(props) {
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
@@ -86,7 +87,7 @@ function App(props) {
     baseUrl: 'http://localhost:3002',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization' `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -119,16 +120,37 @@ function App(props) {
       });
   }
 
-  function handleRegister(email, password, name) {
+  function handleRegister(username, email, password) {
+    console.log(username, email, password);
     auth
-      .register(email, password, name)
+      .register(username, email, password)
       .then((res) => {
         if (res.ok) {
           setIsRegistered(true);
           setIsInfoPopupOpen(true);
         } else {
           setIsRegistered(false);
-          setIsInfoTooltipOpen(true);
+          // setIsInfoPopupOpen(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleLogin(email, password) {
+    auth
+      .authorize(email, password)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (!data) {
+          throw new Error('User Not Found');
+        }
+        if (data.token) {
+          setEmail('');
+          setPassword('');
+          setIsLoggedIn(true);
+          setToken(localStorage.setItem('token', data.token));
+          setIsSignInPopupOpen(false);
         }
       })
       .catch((err) => console.log(err));
@@ -170,11 +192,13 @@ function App(props) {
         isOpen={isSignInPopupOpen}
         onClose={closePopup}
         onLinkClick={openSignUpPopup}
+        handleLogin={handleLogin}
       />
       <SignUpPopup
         isOpen={isSignUpPopupOpen}
         onClose={closePopup}
         onLinkClick={openSignInPopup}
+        handleRegister={handleRegister}
       />
       <InfoPopup
         onClose={closePopup}
