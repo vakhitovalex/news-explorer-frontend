@@ -13,6 +13,7 @@ import './App.css';
 import NewsApi from '../../utils/NewsApi';
 import MainApi from '../../utils/MainApi';
 import * as auth from '../../utils/auth';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function App(props) {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -24,6 +25,7 @@ function App(props) {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [currentUser, setCurrentUser] = useState({});
 
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
@@ -156,56 +158,76 @@ function App(props) {
       .catch((err) => console.log(err));
   }
 
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      auth
+        .checkToken(token)
+        .then((res) => {
+          if (res) {
+            console.log(res);
+            setIsLoggedIn(true);
+            setEmail(res.email);
+            setCurrentUser(res);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path='/'>
-          <Header
-            signinClick={openSignInPopup}
-            searchKeyword={searchKeyword}
-            setSearchKeyword={setSearchKeyword}
-            searchForNewsArticles={searchForNewsArticles}
-            // onSubmit={() => {
-            //   requestNewsArticles();
-            //   console.log('smth');
-            // }}
-            // setSearchKeyword={setSearchKeyword}
-          />
-          <Main
-            newsCards={newsCards}
-            searchKeyword={searchKeyword}
-            searchInProgress={searchInProgress}
-            searchMade={searchMade}
-            isLoggedIn={isLoggedIn}
-            handleArticleSave={handleArticleSave}
-          />
-          <About />
-          <Footer />
-        </Route>
-        <Route path='/saved-articles'>
-          <SavedArticles signinClick={openSignInPopup} />
-          <SavedNews />
-          <Footer />
-        </Route>
-      </Switch>
-      <SignInPopup
-        isOpen={isSignInPopupOpen}
-        onClose={closePopup}
-        onLinkClick={openSignUpPopup}
-        handleLogin={handleLogin}
-      />
-      <SignUpPopup
-        isOpen={isSignUpPopupOpen}
-        onClose={closePopup}
-        onLinkClick={openSignInPopup}
-        handleRegister={handleRegister}
-      />
-      <InfoPopup
-        onClose={closePopup}
-        isRegistered={isRegistered}
-        isOpen={isInfoPopupOpen}
-        onLinkClick={openSignInPopup}
-      />
+      <CurrentUserContext.Provider value={currentUser}>
+        <Switch>
+          <Route exact path='/'>
+            <Header
+              signinClick={openSignInPopup}
+              searchKeyword={searchKeyword}
+              setSearchKeyword={setSearchKeyword}
+              searchForNewsArticles={searchForNewsArticles}
+              isLoggedIn={isLoggedIn}
+              // onSubmit={() => {
+              //   requestNewsArticles();
+              //   console.log('smth');
+              // }}
+              // setSearchKeyword={setSearchKeyword}
+            />
+            <Main
+              newsCards={newsCards}
+              searchKeyword={searchKeyword}
+              searchInProgress={searchInProgress}
+              searchMade={searchMade}
+              isLoggedIn={isLoggedIn}
+              handleArticleSave={handleArticleSave}
+            />
+            <About />
+            <Footer />
+          </Route>
+          <Route path='/saved-articles'>
+            <SavedArticles signinClick={openSignInPopup} />
+            <SavedNews />
+            <Footer />
+          </Route>
+        </Switch>
+        <SignInPopup
+          isOpen={isSignInPopupOpen}
+          onClose={closePopup}
+          onLinkClick={openSignUpPopup}
+          handleLogin={handleLogin}
+        />
+        <SignUpPopup
+          isOpen={isSignUpPopupOpen}
+          onClose={closePopup}
+          onLinkClick={openSignInPopup}
+          handleRegister={handleRegister}
+        />
+        <InfoPopup
+          onClose={closePopup}
+          isRegistered={isRegistered}
+          isOpen={isInfoPopupOpen}
+          onLinkClick={openSignInPopup}
+        />
+      </CurrentUserContext.Provider>
     </BrowserRouter>
   );
 }

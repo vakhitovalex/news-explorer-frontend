@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Navigation(props) {
+  const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser);
   const savedArticlesUrl = useLocation().pathname;
   const [isNavBarChecked, setIsNavBarChecked] = useState(false);
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,7 +81,7 @@ function Navigation(props) {
                 handleCheck();
               }}
             >
-              {props.isLoggedIn ? `Elise` : 'Sign In'}
+              {props.isLoggedIn ? currentUser.name : 'Sign In'}
             </button>
             <div
               className={
