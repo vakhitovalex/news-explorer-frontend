@@ -158,6 +158,12 @@ function App(props) {
       .catch((err) => console.log(err));
   }
 
+  function handleLogout() {
+    setIsLoggedIn(false);
+    localStorage.removeItem('token');
+    setEmail('');
+  }
+
   useEffect(() => {
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
@@ -186,6 +192,7 @@ function App(props) {
               setSearchKeyword={setSearchKeyword}
               searchForNewsArticles={searchForNewsArticles}
               isLoggedIn={isLoggedIn}
+              handleLogout={handleLogout}
               // onSubmit={() => {
               //   requestNewsArticles();
               //   console.log('smth');

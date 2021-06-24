@@ -92,6 +92,7 @@ function Navigation(props) {
               }`
                   : undefined
               }
+              onClick={props.handleLogout}
             ></div>
           </Link>
         </li>
