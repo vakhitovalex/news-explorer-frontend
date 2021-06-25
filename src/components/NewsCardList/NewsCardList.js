@@ -38,7 +38,7 @@ function NewsCardList(props) {
         <ul className='newscards__list'>
           {newsChunks[0].map((newsCard) => (
             <NewsCard
-              key={newsCard.url}
+              key={newsCard.url || newsCard._id}
               newsCard={newsCard}
               searchKeyword={props.searchKeyword}
               isLoggedIn={props.isLoggedIn}

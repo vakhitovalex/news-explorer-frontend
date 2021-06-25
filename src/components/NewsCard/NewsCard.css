@@ -125,6 +125,7 @@
 
 .newscard__information {
   background-color: white;
+  min-height: 280px;
 }
 .newscard__date {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
@@ -209,7 +210,7 @@
     height: 45%;
   }
   .newscard__information {
-    max-height: 270px;
+    min-height: 240px;
   }
   .newscard__date {
     margin: 16px 15px 6px;

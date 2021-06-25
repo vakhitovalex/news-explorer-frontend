@@ -20,15 +20,23 @@ function App(props) {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [currentUser, setCurrentUser] = useState({});
-  const [savedArticle, setSavedArticle] = useState([]);
-  console.log(savedArticle);
+
+  const [searchKeyword, setSearchKeyword] = useState('');
+
+  const [newsCards, setNewsCards] = useState([]);
+  const [savedArticles, setSavedArticles] = useState([]);
+  const [searchInProgress, setSearchInProgress] = useState(false);
+  const [searchMade, setSearchMade] = useState(false);
+
+  console.log(savedArticles);
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
     headers: {
@@ -67,12 +75,6 @@ function App(props) {
     };
   }, []);
 
-  const [searchKeyword, setSearchKeyword] = useState('');
-
-  const [newsCards, setNewsCards] = useState([]);
-  const [searchInProgress, setSearchInProgress] = useState(false);
-  const [searchMade, setSearchMade] = useState(false);
-
   function searchForNewsArticles(searchKeyword) {
     setSearchMade(true);
     setSearchInProgress(true);
@@ -110,7 +112,7 @@ function App(props) {
         image: newsCard.urlToImage,
       })
       .then((newArticle) => {
-        setSavedArticle(newArticle, ...savedArticle);
+        setSavedArticles(newArticle, ...savedArticles);
       })
       //   // Create a new array based on the existing one and putting a new card into it
       //   const newCards = cards.map((item) =>
@@ -127,8 +129,8 @@ function App(props) {
   function showSavedArticles() {
     mainApi
       .getArticles()
-      .then((res) => {
-        setSavedArticle(res);
+      .then((resArticles) => {
+        setSavedArticles(resArticles);
       })
       .catch((err) => {
         console.log(err + ' in showing saved articles');
@@ -184,7 +186,6 @@ function App(props) {
         .checkToken(token)
         .then((res) => {
           if (res) {
-            console.log(res);
             setIsLoggedIn(true);
             setEmail(res.email);
             setCurrentUser(res);
@@ -226,13 +227,13 @@ function App(props) {
           <Route path='/saved-articles'>
             <Navigation
               isLoggedIn={isLoggedIn}
-              signinClick={props.signinClick}
+              // signinClick={props.signinClick}
               handleLogout={props.handleLogout}
             />
             <SavedArticles signinClick={openSignInPopup} />
             <SavedNews
               showSavedArticles={showSavedArticles}
-              newsCards={savedArticle}
+              newsCards={savedArticles}
               searchKeyword={searchKeyword}
               isLoggedIn={isLoggedIn}
             />

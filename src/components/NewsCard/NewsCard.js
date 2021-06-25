@@ -17,11 +17,21 @@ function NewsCard(props) {
     <li className='newscard'>
       <div
         className='newscard__image'
-        style={{ backgroundImage: `url(${props.newsCard.urlToImage})` }}
+        style={{
+          backgroundImage: `url(${
+            savedArticlesUrl === '/saved-articles'
+              ? props.newsCard.image
+              : props.newsCard.urlToImage
+          })`,
+        }}
       ></div>
       <div className='newscard__links'>
         <div className='newscard__description'>
-          <span>{props.searchKeyword}</span>
+          <span>
+            {savedArticlesUrl === '/saved-articles'
+              ? props.newsCard.keyword
+              : props.newsCard.searchKeyword}
+          </span>
         </div>
 
         {savedArticlesUrl === '/saved-articles' ? (
@@ -42,15 +52,27 @@ function NewsCard(props) {
 
       <div className='newscard__information'>
         <p className='newscard__date'>
-          {new Date(props.newsCard.publishedAt).toLocaleString('en-US', {
+          {new Date(
+            savedArticlesUrl === '/saved-articles'
+              ? props.newsCard.date
+              : props.newsCard.publishedAt
+          ).toLocaleString('en-US', {
             month: 'long',
             day: 'numeric',
             year: 'numeric',
           })}
         </p>
         <h3 className='newscard__title'>{props.newsCard.title}</h3>
-        <h4 className='newscard__subtitle'>{props.newsCard.description}</h4>
-        <p className='newscard__source'>{props.newsCard.source.name}</p>
+        <h4 className='newscard__subtitle'>
+          {savedArticlesUrl === '/saved-articles'
+            ? props.newsCard.text
+            : props.newsCard.description}
+        </h4>
+        <p className='newscard__source'>
+          {savedArticlesUrl === '/saved-articles'
+            ? props.newsCard.source
+            : props.newsCard.source.name}
+        </p>
       </div>
     </li>
   );
