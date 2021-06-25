@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './NewsCardList.css';
 import notFound from '../../images/not-found.svg';
@@ -6,6 +7,7 @@ import notFound from '../../images/not-found.svg';
 import NewsCard from '../NewsCard/NewsCard';
 
 function NewsCardList(props) {
+  const savedArticlesUrl = useLocation().pathname;
   const [index, setIndex] = useState(1);
 
   const chunk = (arr, chunkSize = 1, cache = []) => {
@@ -27,9 +29,11 @@ function NewsCardList(props) {
   // console.log(props.newsCards.length);
   return (
     <section className='newscards'>
-      <h2 className={NewsCard ? 'newscards__title' : undefined}>
-        Search results
-      </h2>
+      {savedArticlesUrl !== '/saved-articles' && (
+        <h2 className={NewsCard ? 'newscards__title' : undefined}>
+          Search results
+        </h2>
+      )}
       {newsChunks.length ? (
         <ul className='newscards__list'>
           {newsChunks[0].map((newsCard) => (

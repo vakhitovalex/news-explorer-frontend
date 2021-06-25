@@ -19,9 +19,7 @@ function Navigation(props) {
       <input
         type='checkbox'
         className={`navbar__checkbox
-        ${
-          savedArticlesUrl === '/saved-articles' ? 'navbar__checkbox_dark' : ''
-        }`}
+        ${props.isLoggedIn ? 'navbar__checkbox_dark' : ''}`}
         id='navbar__hamburger'
         onChange={handleCheck}
         checked={isNavBarChecked}

@@ -27,7 +27,8 @@ function App(props) {
   const [username, setUsername] = useState('');
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [currentUser, setCurrentUser] = useState({});
-
+  const [savedArticle, setSavedArticle] = useState([]);
+  console.log(savedArticle);
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
     headers: {
@@ -108,8 +109,8 @@ function App(props) {
         link: newsCard.url,
         image: newsCard.urlToImage,
       })
-      .then((info) => {
-        console.log(info);
+      .then((newArticle) => {
+        setSavedArticle(newArticle, ...savedArticle);
       })
       //   // Create a new array based on the existing one and putting a new card into it
       //   const newCards = cards.map((item) =>
@@ -120,6 +121,17 @@ function App(props) {
       // })
       .catch((err) => {
         console.log(err + ' in like api request');
+      });
+  }
+
+  function showSavedArticles() {
+    mainApi
+      .getArticles()
+      .then((res) => {
+        setSavedArticle(res);
+      })
+      .catch((err) => {
+        console.log(err + ' in showing saved articles');
       });
   }
 
@@ -219,7 +231,8 @@ function App(props) {
             />
             <SavedArticles signinClick={openSignInPopup} />
             <SavedNews
-              newsCards={newsCards}
+              showSavedArticles={showSavedArticles}
+              newsCards={savedArticle}
               searchKeyword={searchKeyword}
               isLoggedIn={isLoggedIn}
             />
