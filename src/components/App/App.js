@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import About from '../About/About';
@@ -224,21 +225,18 @@ function App(props) {
             <About />
             <Footer />
           </Route>
-          <Route path='/saved-articles'>
-            <Navigation
-              isLoggedIn={isLoggedIn}
-              handleLogout={props.handleLogout}
-            />
-
-            <SavedArticles
-              signinClick={openSignInPopup}
-              showSavedArticles={showSavedArticles}
-              savedArticles={savedArticles}
-              searchKeyword={searchKeyword}
-              isLoggedIn={isLoggedIn}
-            />
-            <Footer />
-          </Route>
+          <ProtectedRoute
+            path='/saved-articles'
+            component={SavedArticles}
+            /* <SavedArticles */
+            signinClick={openSignInPopup}
+            showSavedArticles={showSavedArticles}
+            savedArticles={savedArticles}
+            searchKeyword={searchKeyword}
+            isLoggedIn={isLoggedIn}
+            /* /> */
+          />
+          <Footer />
         </Switch>
         <SignInPopup
           isOpen={isSignInPopupOpen}

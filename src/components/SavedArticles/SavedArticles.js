@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './SavedArticles.css';
-import '../Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import NewsCard from '../NewsCard/NewsCard';
+import Footer from '../Footer/Footer';
 
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
@@ -12,31 +13,37 @@ function SavedArticles(props) {
     props.showSavedArticles();
   }, []);
 
-  // const [index, setIndex] = useState(1);
+  console.log(props.savedArticles[0]);
+  console.log(props.savedArticles[1]);
 
-  // const chunk = (arr, chunkSize = 1, cache = []) => {
-  //   const tmp = [arr];
-  //   if (chunkSize <= 0) return cache;
-  //   while (tmp.length) cache.push(tmp.splice(0, chunkSize));
-  //   return cache;
-  // };
+  // function (array, element) {
+  //   for (var i = 0; i < array.length, i++) {
+  //     array
+  //   }
+  // }
+  const arr = props.savedArticles;
+  console.log(arr[0]);
 
-  // const savedNewsChunks = chunk(props.savedArticles, 3 * index);
+  // const occurrencesOf = (number,numbers) => numbers.reduce((counter, currentNumber)=> (number === currentNumber ? counter+1 : counter),0);
+  // const obj = props.savedArticles;
+
+  // function filterSavedArticles(array, key) {
+  //   array.filter((v) => v === key).length;
+  // }
+
   const currentUser = useContext(CurrentUserContext);
-  console.log(props);
-  // const expandRows = () => {
-  //   setIndex(index + 1);
-  // };
+
   return (
-    <section className='saved'>
-      {/* <Navigation
+    <main className='saved'>
+      <Navigation
         signinClick={props.signinClick}
         isLoggedIn={props.isLoggedIn}
-      /> */}
+      />
       <div className='saved__main'>
         <h1 className='saved__title'>Saved articles</h1>
         <h2 className='saved__subtitle'>
-          {currentUser.name}, you have 5 saved articles
+          {currentUser.name}, you have {props.savedArticles.length} saved
+          articles
         </h2>
         <div className='saved__search'>
           <p className='saved__search-title'>By keywords:&nbsp;</p>
@@ -59,20 +66,8 @@ function SavedArticles(props) {
           ))}
         </ul>
       </div>
-      {/* {savedNewsChunks.length > 1 ? (
-        <button className='newscards__expand' onClick={expandRows}>
-          Show more
-        </button>
-      ) : (
-        ''
-      )} */}
-      {/* <NewsCardList
-        newsCards={props.newsCards}
-        searchKeyword={props.searchKeyword}
-        isLoggedIn={props.isLoggedIn}
-        handleArticleSave={props.handleArticleSave}
-      /> */}
-    </section>
+      <Footer />
+    </main>
   );
 }
 
