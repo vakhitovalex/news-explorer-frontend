@@ -5,7 +5,7 @@ import Navigation from '../Navigation/Navigation';
 import About from '../About/About';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
-import SavedNews from '../SavedNews/SavedNews';
+// import SavedNews from '../SavedNews/SavedNews';
 import SavedArticles from '../SavedArticles/SavedArticles';
 import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
@@ -227,13 +227,13 @@ function App(props) {
           <Route path='/saved-articles'>
             <Navigation
               isLoggedIn={isLoggedIn}
-              // signinClick={props.signinClick}
               handleLogout={props.handleLogout}
             />
-            <SavedArticles signinClick={openSignInPopup} />
-            <SavedNews
+
+            <SavedArticles
+              signinClick={openSignInPopup}
               showSavedArticles={showSavedArticles}
-              newsCards={savedArticles}
+              savedArticles={savedArticles}
               searchKeyword={searchKeyword}
               isLoggedIn={isLoggedIn}
             />

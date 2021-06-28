@@ -14,7 +14,7 @@ function NewsCard(props) {
   }
 
   return (
-    <li className='newscard'>
+    <div className='newscard'>
       <div
         className='newscard__image'
         style={{
@@ -26,13 +26,11 @@ function NewsCard(props) {
         }}
       ></div>
       <div className='newscard__links'>
-        <div className='newscard__description'>
-          <span>
-            {savedArticlesUrl === '/saved-articles'
-              ? props.newsCard.keyword
-              : props.newsCard.searchKeyword}
-          </span>
-        </div>
+        {savedArticlesUrl === '/saved-articles' && (
+          <div className='newscard__description'>
+            <span>{props.newsCard.keyword}</span>
+          </div>
+        )}
 
         {savedArticlesUrl === '/saved-articles' ? (
           <button className='newscard__remove'></button>
@@ -74,7 +72,7 @@ function NewsCard(props) {
             : props.newsCard.source.name}
         </p>
       </div>
-    </li>
+    </div>
   );
 }
 
