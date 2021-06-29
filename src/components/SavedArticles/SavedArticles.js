@@ -12,24 +12,20 @@ function SavedArticles(props) {
   useEffect(() => {
     props.showSavedArticles();
   }, []);
+  const sortedKeywords = {};
 
-  console.log(props.savedArticles[0]);
-  console.log(props.savedArticles[1]);
+  const keywords = props.savedArticles.map(
+    (a) => a.keyword[0].toUpperCase() + a.keyword.slice(1).toLowerCase()
+  );
 
-  // function (array, element) {
-  //   for (var i = 0; i < array.length, i++) {
-  //     array
-  //   }
-  // }
-  const arr = props.savedArticles;
-  console.log(arr[0]);
+  for (let i = 0; i < keywords.length; i++) {
+    sortedKeywords[keywords[i]] = (sortedKeywords[keywords[i]] || 0) + 1;
+  }
 
-  // const occurrencesOf = (number,numbers) => numbers.reduce((counter, currentNumber)=> (number === currentNumber ? counter+1 : counter),0);
-  // const obj = props.savedArticles;
-
-  // function filterSavedArticles(array, key) {
-  //   array.filter((v) => v === key).length;
-  // }
+  const sortedValues = Object.keys(sortedKeywords);
+  sortedValues.sort(function (a, b) {
+    return sortedKeywords[b] - sortedKeywords[a];
+  });
 
   const currentUser = useContext(CurrentUserContext);
 
@@ -48,7 +44,13 @@ function SavedArticles(props) {
         <div className='saved__search'>
           <p className='saved__search-title'>By keywords:&nbsp;</p>
           <p className='saved__search-keywords'>
-            Nature, Yellowstone, and 2 other
+            {sortedValues.length > 2
+              ? `${sortedValues[0]}, ${sortedValues[1]}, and ${
+                  sortedValues.length - 2
+                } other`
+              : (sortedValues.length === 2 &&
+                  `${sortedValues[0]}, ${sortedValues[1]}`) ||
+                `${sortedValues[0]}`}
           </p>
         </div>
       </div>
