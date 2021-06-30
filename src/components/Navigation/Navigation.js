@@ -12,6 +12,7 @@ function Navigation(props) {
   function handleCheck() {
     setIsNavBarChecked(!isNavBarChecked);
   }
+  console.log(props.isLoggedIn);
   return (
     <nav className='navbar'>
       <p className='navbar__home'>NewsExplorer</p>
@@ -73,10 +74,18 @@ function Navigation(props) {
                   ? 'navbar__button_loggedin'
                   : ''
               }`}
-              onClick={() => {
-                props.signinClick();
-                handleCheck();
-              }}
+              onClick={
+                props.isLoggedIn
+                  ? props.handleLogout
+                  : () => {
+                      props.signinClick();
+                      handleCheck();
+                    }
+              }
+              // onClick={() => {
+              //   props.signinClick();
+              //   handleCheck();
+              // }}
             >
               {props.isLoggedIn ? currentUser.name : 'Sign In'}
             </button>
