@@ -10,7 +10,7 @@ function NewsCard(props) {
     setIsSaved(!isSaved);
     props.handleArticleSave(props.newsCard);
   }
-
+  console.log(props.newsCard._id);
   return (
     <div className='newscard'>
       <div
@@ -31,7 +31,10 @@ function NewsCard(props) {
         )}
 
         {savedArticlesUrl === '/saved-articles' ? (
-          <button className='newscard__remove'></button>
+          <button
+            className='newscard__remove'
+            onClick={() => props.handleDeleteSavedArticle(props.newsCard._id)}
+          ></button>
         ) : (
           <button
             className={

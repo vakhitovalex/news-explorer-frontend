@@ -30,6 +30,7 @@ function SavedArticles(props) {
                   searchKeyword={props.searchKeyword}
                   isLoggedIn={props.isLoggedIn}
                   handleArticleSave={props.handleArticleSave}
+                  handleDeleteSavedArticle={props.handleDeleteSavedArticle}
                 />
               </li>
             ))}

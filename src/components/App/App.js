@@ -138,6 +138,20 @@ function App(props) {
       });
   }
 
+  function handleDeleteSavedArticle(articleId) {
+    mainApi
+      .deleteArticle(articleId)
+      .then((res) => {
+        const arrayWithoutDeletedArticle = savedArticles.filter(
+          (article) => article._id !== articleId
+        );
+        setSavedArticles(arrayWithoutDeletedArticle);
+      })
+      .catch((err) => {
+        console.log(err + ' in delete api request');
+      });
+  }
+
   function handleRegister(username, email, password) {
     console.log(username, email, password);
     auth
@@ -208,11 +222,6 @@ function App(props) {
               searchForNewsArticles={searchForNewsArticles}
               isLoggedIn={isLoggedIn}
               handleLogout={handleLogout}
-              // onSubmit={() => {
-              //   requestNewsArticles();
-              //   console.log('smth');
-              // }}
-              // setSearchKeyword={setSearchKeyword}
             />
             <Main
               newsCards={newsCards}
@@ -228,14 +237,13 @@ function App(props) {
           <ProtectedRoute
             path='/saved-articles'
             component={SavedArticles}
-            /* <SavedArticles */
             signinClick={openSignInPopup}
             savedArticles={savedArticles}
             searchKeyword={searchKeyword}
             isLoggedIn={isLoggedIn}
             showSavedArticles={showSavedArticles}
             handleLogout={handleLogout}
-            /* /> */
+            handleDeleteSavedArticle={handleDeleteSavedArticle}
           />
           <Footer />
         </Switch>
