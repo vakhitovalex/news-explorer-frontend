@@ -113,7 +113,7 @@ function App(props) {
         image: newsCard.urlToImage,
       })
       .then((newArticle) => {
-        setSavedArticles(newArticle, ...savedArticles);
+        setSavedArticles([...savedArticles, newArticle]);
       })
       //   // Create a new array based on the existing one and putting a new card into it
       //   const newCards = cards.map((item) =>
@@ -230,10 +230,10 @@ function App(props) {
             component={SavedArticles}
             /* <SavedArticles */
             signinClick={openSignInPopup}
-            showSavedArticles={showSavedArticles}
             savedArticles={savedArticles}
             searchKeyword={searchKeyword}
             isLoggedIn={isLoggedIn}
+            showSavedArticles={showSavedArticles}
             /* /> */
           />
           <Footer />
