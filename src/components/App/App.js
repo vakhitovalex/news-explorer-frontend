@@ -234,6 +234,7 @@ function App(props) {
             searchKeyword={searchKeyword}
             isLoggedIn={isLoggedIn}
             showSavedArticles={showSavedArticles}
+            handleLogout={handleLogout}
             /* /> */
           />
           <Footer />

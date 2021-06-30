@@ -5,7 +5,6 @@ import '../SearchForm/SearchForm';
 import SearchForm from '../SearchForm/SearchForm';
 import Navigation from '../Navigation/Navigation';
 function Header(props) {
-  console.log(props);
   return (
     <header className='header'>
       <Navigation

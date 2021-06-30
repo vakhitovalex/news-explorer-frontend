@@ -18,6 +18,7 @@ function SavedArticles(props) {
         <Navigation
           signinClick={props.signinClick}
           isLoggedIn={props.isLoggedIn}
+          handleLogout={props.handleLogout}
         />
         <SavedNewsHeader savedArticles={props.savedArticles} />
         <div className='newscards'>
