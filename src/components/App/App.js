@@ -37,7 +37,6 @@ function App(props) {
   const [searchInProgress, setSearchInProgress] = useState(false);
   const [searchMade, setSearchMade] = useState(false);
 
-  console.log(savedArticles);
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
     headers: {
@@ -46,6 +45,14 @@ function App(props) {
     },
     apiKey: '254138f371d945dd9250e8efa292f7d4',
   });
+  console.log(newsCards);
+  useEffect(() => {
+    if (localStorage.getItem('articlesFound')) {
+      setNewsCards(JSON.parse(localStorage.getItem('articlesFound')));
+      setSearchKeyword(localStorage.getItem('keyword'));
+      setSearchMade(true);
+    }
+  }, []);
 
   function openSignInPopup() {
     setIsSignInPopupOpen(true);
@@ -82,9 +89,16 @@ function App(props) {
     newsApi
       .getNewsArticles(searchKeyword)
       .then((data) => {
-        setNewsCards(data.articles);
-
-        setSearchInProgress(false);
+        if (data.totalResults > 0) {
+          console.log(data);
+          setNewsCards(data.articles);
+          setSearchInProgress(false);
+          localStorage.setItem('articlesFound', JSON.stringify(data.articles));
+          localStorage.setItem('keyword', searchKeyword);
+        } else {
+          localStorage.removeItem('articlesFound');
+          localStorage.removeItem('keyword');
+        }
       })
 
       .catch((err) => console.log(err));
@@ -111,6 +125,7 @@ function App(props) {
         source: newsCard.source.name,
         link: newsCard.url,
         image: newsCard.urlToImage,
+        owner: currentUser._id,
       })
       .then((newArticle) => {
         setSavedArticles([...savedArticles, newArticle]);
@@ -123,7 +138,7 @@ function App(props) {
       //   setCards(newCards);
       // })
       .catch((err) => {
-        console.log(err + ' in like api request');
+        console.log(err + ' in save api request');
       });
   }
 
@@ -131,6 +146,7 @@ function App(props) {
     mainApi
       .getArticles()
       .then((resArticles) => {
+        console.log(resArticles);
         setSavedArticles(resArticles);
       })
       .catch((err) => {
@@ -178,11 +194,11 @@ function App(props) {
           throw new Error('User Not Found');
         }
         if (data.token) {
+          setToken(localStorage.setItem('token', data.token));
+          setIsLoggedIn(true);
+          setIsSignInPopupOpen(false);
           setEmail('');
           setPassword('');
-          setIsLoggedIn(true);
-          setToken(localStorage.setItem('token', data.token));
-          setIsSignInPopupOpen(false);
         }
       })
       .catch((err) => console.log(err));
@@ -191,7 +207,9 @@ function App(props) {
   function handleLogout() {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
-    setEmail('');
+    localStorage.removeItem('articlesFound');
+    localStorage.removeItem('keyword');
+    // setEmail('');
   }
 
   useEffect(() => {
@@ -199,11 +217,13 @@ function App(props) {
       const token = localStorage.getItem('token');
       auth
         .checkToken(token)
+        .then((res) => res.json())
         .then((res) => {
           if (res) {
+            setCurrentUser(res);
+            showSavedArticles();
             setIsLoggedIn(true);
             setEmail(res.email);
-            setCurrentUser(res);
           }
         })
         .catch((err) => console.log(err));

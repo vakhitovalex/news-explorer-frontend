@@ -10,7 +10,7 @@ function NewsCard(props) {
     setIsSaved(!isSaved);
     props.handleArticleSave(props.newsCard);
   }
-  console.log(props.newsCard._id);
+
   return (
     <div className='newscard'>
       <div

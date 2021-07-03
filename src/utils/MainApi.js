@@ -13,11 +13,20 @@ export default class MainApi {
     );
   }
   // POST /articles
-  addArticle({ keyword, title, text, date, source, link, image }) {
+  addArticle({ keyword, title, text, date, source, link, image, owner }) {
     return fetch(this._baseUrl + '/articles', {
       headers: this._headers,
       method: 'POST',
-      body: JSON.stringify({ keyword, title, text, date, source, link, image }),
+      body: JSON.stringify({
+        keyword,
+        title,
+        text,
+        date,
+        source,
+        link,
+        image,
+        owner,
+      }),
     }).then((res) =>
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
     );

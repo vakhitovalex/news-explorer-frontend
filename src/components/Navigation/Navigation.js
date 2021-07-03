@@ -12,7 +12,7 @@ function Navigation(props) {
   function handleCheck() {
     setIsNavBarChecked(!isNavBarChecked);
   }
-  console.log(props.isLoggedIn);
+
   return (
     <nav className='navbar'>
       <p className='navbar__home'>NewsExplorer</p>
