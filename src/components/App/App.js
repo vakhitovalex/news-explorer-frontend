@@ -89,7 +89,7 @@ function App(props) {
     newsApi
       .getNewsArticles(searchKeyword)
       .then((data) => {
-        if (data.totalResults > 0) {
+        if (data.totalResults !== 0) {
           console.log(data);
           setNewsCards(data.articles);
           setSearchInProgress(false);
@@ -98,9 +98,10 @@ function App(props) {
         } else {
           localStorage.removeItem('articlesFound');
           localStorage.removeItem('keyword');
+          setSearchInProgress(false);
+          setNewsCards([]);
         }
       })
-
       .catch((err) => console.log(err));
   }
 
