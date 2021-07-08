@@ -113,6 +113,8 @@ function App(props) {
     },
   });
 
+  function toggleArticle(article) {}
+
   function handleArticleSave(newsCard) {
     // Check one more time if this card was already liked
     // const isSaved = article.likes.some((i) => i === currentUser._id);
@@ -129,7 +131,19 @@ function App(props) {
         owner: currentUser._id,
       })
       .then((newArticle) => {
-        setSavedArticles([...savedArticles, newArticle]);
+        console.log(newArticle);
+        if (newArticle) {
+          const newSearchArticles = newsCards;
+          newSearchArticles.map((card) => {
+            if (card.link === newArticle.link) {
+              card.isSaved = true;
+              card._id = newArticle.id;
+            }
+          });
+          console.log(newSearchArticles);
+          setNewsCards(newSearchArticles);
+          setSavedArticles([...savedArticles, newArticle]);
+        }
       })
       //   // Create a new array based on the existing one and putting a new card into it
       //   const newCards = cards.map((item) =>
