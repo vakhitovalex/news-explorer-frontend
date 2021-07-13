@@ -46,38 +46,6 @@ function App(props) {
     apiKey: '254138f371d945dd9250e8efa292f7d4',
   });
 
-  console.log(newsCards);
-  console.log(currentUser);
-
-  function openSignInPopup() {
-    setIsSignInPopupOpen(true);
-  }
-  function openSignUpPopup() {
-    setIsSignUpPopupOpen(true);
-  }
-
-  function closePopup() {
-    setIsSignInPopupOpen(false);
-    setIsSignUpPopupOpen(false);
-    setIsInfoPopupOpen(false);
-  }
-
-  useEffect(() => {
-    function closePopupWithButton(e) {
-      if (e.key === 'Escape') {
-        closePopup();
-      } else if (e.target.className.includes('modal_open')) {
-        closePopup();
-      }
-    }
-    window.addEventListener('keydown', closePopupWithButton);
-    window.addEventListener('click', closePopupWithButton);
-    return () => {
-      window.removeEventListener('keydown', closePopupWithButton);
-      window.removeEventListener('click', closePopupWithButton);
-    };
-  }, []);
-
   function searchForNewsArticles(searchKeyword) {
     setSearchMade(true);
     setSearchInProgress(true);
@@ -101,22 +69,12 @@ function App(props) {
   }
 
   const mainApi = new MainApi({
-    baseUrl: 'http://localhost:3002',
+    baseUrl: 'https://api.alex-news.students.nomoreparties.site',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   });
-
-  function toggleArticle(article) {
-    if (article.isSaved) {
-      article.isSaved = false;
-      handleDeleteSavedArticle(article._id);
-    } else {
-      handleArticleSave(article);
-      article.isSaved = true;
-    }
-  }
 
   function handleArticleSave(newsCard) {
     mainApi
@@ -163,6 +121,30 @@ function App(props) {
       });
   }
 
+  function toggleArticle(article) {
+    if (article.isSaved) {
+      article.isSaved = false;
+      handleDeleteSavedArticle(article._id);
+    } else {
+      handleArticleSave(article);
+      article.isSaved = true;
+    }
+  }
+
+  function searchIfCardIsAlreadySaved() {
+    const newSearchForArticles = newsCards;
+    newSearchForArticles.map((searchedCard) => {
+      savedArticles.map((savedArticle) => {
+        searchedCard.isSaved = false;
+        if (searchedCard.url === savedArticle.link) {
+          searchedCard._id = savedArticle._id;
+          searchedCard.isSaved = true;
+        }
+      });
+      setNewsCards(newSearchForArticles);
+    });
+  }
+
   function handleRegister(username, email, password) {
     console.log(username, email, password);
     auth
@@ -203,7 +185,6 @@ function App(props) {
     localStorage.removeItem('token');
     localStorage.removeItem('articlesFound');
     localStorage.removeItem('keyword');
-    // setEmail('');
   }
 
   useEffect(() => {
@@ -227,20 +208,6 @@ function App(props) {
     }
   }, [token]);
 
-  function searchIfCardIsAlreadySaved() {
-    const newSearchForArticles = newsCards;
-    newSearchForArticles.map((searchedCard) => {
-      savedArticles.map((savedArticle) => {
-        searchedCard.isSaved = false;
-        if (searchedCard.url === savedArticle.link) {
-          searchedCard._id = savedArticle._id;
-          searchedCard.isSaved = true;
-        }
-      });
-      setNewsCards(newSearchForArticles);
-    });
-  }
-
   useEffect(() => {
     if (localStorage.getItem('articlesFound')) {
       setNewsCards(JSON.parse(localStorage.getItem('articlesFound')));
@@ -252,7 +219,36 @@ function App(props) {
 
   useEffect(() => {
     searchIfCardIsAlreadySaved();
-  }, [newsCards]);
+  }, []);
+
+  function openSignInPopup() {
+    setIsSignInPopupOpen(true);
+  }
+  function openSignUpPopup() {
+    setIsSignUpPopupOpen(true);
+  }
+
+  function closePopup() {
+    setIsSignInPopupOpen(false);
+    setIsSignUpPopupOpen(false);
+    setIsInfoPopupOpen(false);
+  }
+
+  useEffect(() => {
+    function closePopupWithButton(e) {
+      if (e.key === 'Escape') {
+        closePopup();
+      } else if (e.target.className.includes('modal_open')) {
+        closePopup();
+      }
+    }
+    window.addEventListener('keydown', closePopupWithButton);
+    window.addEventListener('click', closePopupWithButton);
+    return () => {
+      window.removeEventListener('keydown', closePopupWithButton);
+      window.removeEventListener('click', closePopupWithButton);
+    };
+  }, []);
 
   return (
     <BrowserRouter>

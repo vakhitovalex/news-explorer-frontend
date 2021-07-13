@@ -12,59 +12,57 @@ function NewsCard(props) {
   console.log(props.isSaved);
 
   return (
-    <a
-      href={
-        savedArticlesUrl === '/saved-articles'
-          ? props.newsCard.link
-          : props.newsCard.url
-      }
-      target='_blank'
-      rel='noreferrer'
-      style={{
-        textDecoration: 'none',
-        color: 'black',
-      }}
-    >
-      <div className='newscard'>
-        <div
-          className='newscard__image'
-          style={{
-            backgroundImage: `url(${
-              savedArticlesUrl === '/saved-articles'
-                ? props.newsCard.image
-                : props.newsCard.urlToImage
-            })`,
-          }}
-        ></div>
-        <div className='newscard__links'>
-          {savedArticlesUrl === '/saved-articles' && (
-            <div className='newscard__description'>
-              <span>{props.newsCard.keyword}</span>
-            </div>
-          )}
+    <div className='newscard'>
+      <div
+        className='newscard__image'
+        style={{
+          backgroundImage: `url(${
+            savedArticlesUrl === '/saved-articles'
+              ? props.newsCard.image
+              : props.newsCard.urlToImage
+          })`,
+        }}
+      ></div>
+      <div className='newscard__links'>
+        {savedArticlesUrl === '/saved-articles' && (
+          <div className='newscard__description'>
+            <span>{props.newsCard.keyword}</span>
+          </div>
+        )}
 
-          {savedArticlesUrl === '/saved-articles' ? (
-            <button
-              className='newscard__remove'
-              onClick={() => props.handleDeleteSavedArticle(props.newsCard._id)}
-            ></button>
-          ) : (
-            <button
-              className={
-                props.isLoggedIn
-                  ? `newscard__save-flag
+        {savedArticlesUrl === '/saved-articles' ? (
+          <button
+            className='newscard__remove'
+            onClick={() => props.handleDeleteSavedArticle(props.newsCard._id)}
+          ></button>
+        ) : (
+          <button
+            className={
+              props.isLoggedIn
+                ? `newscard__save-flag
                 ${props.isSaved && 'newscard__save-flag_saved'}`
-                  : `newscard__save-flag_nonactive`
-              }
-              onClick={
-                props.isLoggedIn ? () => handleStatusChange() : undefined
-              }
-            ></button>
-          )}
-          <span className='newscard__message'>Sign in to save</span>
-        </div>
+                : `newscard__save-flag_nonactive`
+            }
+            onClick={props.isLoggedIn ? () => handleStatusChange() : undefined}
+          ></button>
+        )}
+        <span className='newscard__message'>Sign in to save</span>
+      </div>
 
-        <div className='newscard__information'>
+      <div className='newscard__information'>
+        <a
+          href={
+            savedArticlesUrl === '/saved-articles'
+              ? props.newsCard.link
+              : props.newsCard.url
+          }
+          target='_blank'
+          rel='noreferrer'
+          style={{
+            textDecoration: 'none',
+            color: 'black',
+          }}
+        >
           <p className='newscard__date'>
             {new Date(
               savedArticlesUrl === '/saved-articles'
@@ -87,19 +85,10 @@ function NewsCard(props) {
               ? props.newsCard.source
               : props.newsCard.source.name}
           </p>
-        </div>
+        </a>
       </div>
-    </a>
+    </div>
   );
 }
 
 export default NewsCard;
-
-// for future ref
-// if (isSaved && locate.pathname === '/saved-articles') {
-//   saveButton className = 'newscard__delete';
-// } else if (isSaved && locate.pathname !== '/saved-articles') {
-//   saveButton.className = 'newscard__save-flag_active';
-// } else {
-//   saveButton.className = 'newscard__save-flag';
-// }
