@@ -69,7 +69,7 @@ function App(props) {
   }
 
   const mainApi = new MainApi({
-    baseUrl: 'https://api.alex-news.students.nomoreparties.site',
+    baseUrl: 'https://news-alex.herokuapp.com',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -197,7 +197,7 @@ function App(props) {
           if (res) {
             console.log(res);
             setCurrentUser(res);
-            showSavedArticles();
+            // showSavedArticles();
             setIsLoggedIn(true);
             // setEmail(res.email);
           } else {
