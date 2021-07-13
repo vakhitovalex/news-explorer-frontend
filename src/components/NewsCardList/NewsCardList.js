@@ -22,9 +22,9 @@ function NewsCardList(props) {
   const expandRows = () => {
     setIndex(index + 1);
   };
-  console.log(newsChunks);
+  // console.log(newsChunks);
 
-  console.log(newsChunks.length);
+  // console.log(newsChunks.length);
 
   // console.log(props.newsCards.length);
   return (

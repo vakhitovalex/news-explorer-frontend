@@ -37,6 +37,35 @@ function App(props) {
   const [searchInProgress, setSearchInProgress] = useState(false);
   const [searchMade, setSearchMade] = useState(false);
 
+  function openSignInPopup() {
+    setIsSignInPopupOpen(true);
+  }
+  function openSignUpPopup() {
+    setIsSignUpPopupOpen(true);
+  }
+
+  function closePopup() {
+    setIsSignInPopupOpen(false);
+    setIsSignUpPopupOpen(false);
+    setIsInfoPopupOpen(false);
+  }
+
+  useEffect(() => {
+    function closePopupWithButton(e) {
+      if (e.key === 'Escape') {
+        closePopup();
+      } else if (e.target.className.includes('modal_open')) {
+        closePopup();
+      }
+    }
+    window.addEventListener('keydown', closePopupWithButton);
+    window.addEventListener('click', closePopupWithButton);
+    return () => {
+      window.removeEventListener('keydown', closePopupWithButton);
+      window.removeEventListener('click', closePopupWithButton);
+    };
+  }, []);
+
   const newsApi = new NewsApi({
     baseUrl: 'https://newsapi.org/v2/everything?q=',
     headers: {
@@ -51,21 +80,26 @@ function App(props) {
     localStorage.removeItem('articlesFound');
     setSearchMade(true);
     setSearchInProgress(true);
+
+    console.log(searchKeyword);
     newsApi
       .getNewsArticles(searchKeyword)
       .then((data) => {
         if (data.totalResults !== 0) {
-          setNewsCards(data.articles);
           setSearchInProgress(false);
+          console.log(data.articles);
+          setNewsCards(data.articles);
+          console.log(newsCards);
           localStorage.setItem('articlesFound', JSON.stringify(data.articles));
           localStorage.setItem('keyword', searchKeyword);
-          searchIfCardIsAlreadySaved();
+          //
         } else {
-          localStorage.removeItem('articlesFound');
-          localStorage.removeItem('keyword');
+          // localStorage.removeItem('articlesFound');
+          // localStorage.removeItem('keyword');
           setSearchInProgress(false);
           setNewsCards([]);
         }
+        // searchIfCardIsAlreadySaved();
       })
       .catch((err) => console.log(err));
   }
@@ -221,52 +255,23 @@ function App(props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   searchIfCardIsAlreadySaved();
-  // }, []);
-
-  function openSignInPopup() {
-    setIsSignInPopupOpen(true);
-  }
-  function openSignUpPopup() {
-    setIsSignUpPopupOpen(true);
-  }
-
-  function closePopup() {
-    setIsSignInPopupOpen(false);
-    setIsSignUpPopupOpen(false);
-    setIsInfoPopupOpen(false);
-  }
-
   useEffect(() => {
-    function closePopupWithButton(e) {
-      if (e.key === 'Escape') {
-        closePopup();
-      } else if (e.target.className.includes('modal_open')) {
-        closePopup();
-      }
-    }
-    window.addEventListener('keydown', closePopupWithButton);
-    window.addEventListener('click', closePopupWithButton);
-    return () => {
-      window.removeEventListener('keydown', closePopupWithButton);
-      window.removeEventListener('click', closePopupWithButton);
-    };
-  }, []);
+    searchIfCardIsAlreadySaved();
+  }, [newsCards]);
 
   return (
     <BrowserRouter>
       <CurrentUserContext.Provider value={currentUser}>
         <Switch>
           <Route exact path='/'>
-            <Header
+            {/* <Header
               signinClick={openSignInPopup}
               searchKeyword={searchKeyword}
               setSearchKeyword={setSearchKeyword}
               searchForNewsArticles={searchForNewsArticles}
               isLoggedIn={isLoggedIn}
               handleLogout={handleLogout}
-            />
+            /> */}
             <Main
               newsCards={newsCards}
               searchKeyword={searchKeyword}
@@ -275,6 +280,10 @@ function App(props) {
               isLoggedIn={isLoggedIn}
               handleArticleSave={handleArticleSave}
               toggleArticle={toggleArticle}
+              searchForNewsArticles={searchForNewsArticles}
+              handleLogout={handleLogout}
+              signinClick={openSignInPopup}
+              setSearchKeyword={setSearchKeyword}
             />
             <About />
             <Footer />

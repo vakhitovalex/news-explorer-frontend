@@ -9,7 +9,7 @@ function NewsCard(props) {
     props.toggleArticle(props.newsCard);
   }
 
-  console.log(props.isSaved);
+  // console.log(props.isSaved);
 
   return (
     <div className='newscard'>
