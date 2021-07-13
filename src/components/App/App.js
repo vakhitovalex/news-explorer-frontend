@@ -41,13 +41,13 @@ function App(props) {
     baseUrl: 'https://newsapi.org/v2/everything?q=',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
     },
     apiKey: '254138f371d945dd9250e8efa292f7d4',
   });
 
   function searchForNewsArticles(searchKeyword) {
-    localStorage.removeItem('token');
+    localStorage.removeItem('keyword');
     localStorage.removeItem('articlesFound');
     setSearchMade(true);
     setSearchInProgress(true);
@@ -221,9 +221,9 @@ function App(props) {
     }
   }, []);
 
-  useEffect(() => {
-    searchIfCardIsAlreadySaved();
-  }, []);
+  // useEffect(() => {
+  //   searchIfCardIsAlreadySaved();
+  // }, []);
 
   function openSignInPopup() {
     setIsSignInPopupOpen(true);
