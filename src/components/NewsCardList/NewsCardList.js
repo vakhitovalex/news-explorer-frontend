@@ -43,6 +43,8 @@ function NewsCardList(props) {
               searchKeyword={props.searchKeyword}
               isLoggedIn={props.isLoggedIn}
               handleArticleSave={props.handleArticleSave}
+              isSaved={newsCard.isSaved}
+              toggleArticle={props.toggleArticle}
             />
           ))}
         </ul>

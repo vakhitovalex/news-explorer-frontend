@@ -14,6 +14,8 @@ function Main(props) {
             searchKeyword={props.searchKeyword}
             isLoggedIn={props.isLoggedIn}
             handleArticleSave={props.handleArticleSave}
+            // isSaved={props.isSaved}
+            toggleArticle={props.toggleArticle}
           />
         ))}
     </main>

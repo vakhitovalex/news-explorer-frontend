@@ -45,14 +45,9 @@ function App(props) {
     },
     apiKey: '254138f371d945dd9250e8efa292f7d4',
   });
+
   console.log(newsCards);
-  useEffect(() => {
-    if (localStorage.getItem('articlesFound')) {
-      setNewsCards(JSON.parse(localStorage.getItem('articlesFound')));
-      setSearchKeyword(localStorage.getItem('keyword'));
-      setSearchMade(true);
-    }
-  }, []);
+  console.log(currentUser);
 
   function openSignInPopup() {
     setIsSignInPopupOpen(true);
@@ -90,7 +85,6 @@ function App(props) {
       .getNewsArticles(searchKeyword)
       .then((data) => {
         if (data.totalResults !== 0) {
-          console.log(data);
           setNewsCards(data.articles);
           setSearchInProgress(false);
           localStorage.setItem('articlesFound', JSON.stringify(data.articles));
@@ -101,6 +95,7 @@ function App(props) {
           setSearchInProgress(false);
           setNewsCards([]);
         }
+        searchIfCardIsAlreadySaved();
       })
       .catch((err) => console.log(err));
   }
@@ -113,12 +108,17 @@ function App(props) {
     },
   });
 
-  function toggleArticle(article) {}
+  function toggleArticle(article) {
+    if (article.isSaved) {
+      article.isSaved = false;
+      handleDeleteSavedArticle(article._id);
+    } else {
+      handleArticleSave(article);
+      article.isSaved = true;
+    }
+  }
 
   function handleArticleSave(newsCard) {
-    // Check one more time if this card was already liked
-    // const isSaved = article.likes.some((i) => i === currentUser._id);
-    // Send a request to the API and getting the updated card data
     mainApi
       .addArticle({
         keyword: searchKeyword,
@@ -131,27 +131,8 @@ function App(props) {
         owner: currentUser._id,
       })
       .then((newArticle) => {
-        console.log(newArticle);
-        if (newArticle) {
-          const newSearchArticles = newsCards;
-          newSearchArticles.map((card) => {
-            if (card.link === newArticle.link) {
-              card.isSaved = true;
-              card._id = newArticle.id;
-            }
-          });
-          console.log(newSearchArticles);
-          setNewsCards(newSearchArticles);
-          setSavedArticles([...savedArticles, newArticle]);
-        }
+        setSavedArticles([...savedArticles], newArticle);
       })
-      //   // Create a new array based on the existing one and putting a new card into it
-      //   const newCards = cards.map((item) =>
-      //     item._id === card._id ? newCard : item
-      //   );
-      //   // Update the state
-      //   setCards(newCards);
-      // })
       .catch((err) => {
         console.log(err + ' in save api request');
       });
@@ -161,7 +142,6 @@ function App(props) {
     mainApi
       .getArticles()
       .then((resArticles) => {
-        console.log(resArticles);
         setSavedArticles(resArticles);
       })
       .catch((err) => {
@@ -204,7 +184,6 @@ function App(props) {
       .authorize(email, password)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (!data) {
           throw new Error('User Not Found');
         }
@@ -235,15 +214,45 @@ function App(props) {
         .then((res) => res.json())
         .then((res) => {
           if (res) {
+            console.log(res);
             setCurrentUser(res);
             showSavedArticles();
             setIsLoggedIn(true);
-            setEmail(res.email);
+            // setEmail(res.email);
+          } else {
+            setIsLoggedIn(false);
           }
         })
         .catch((err) => console.log(err));
     }
+  }, [token]);
+
+  function searchIfCardIsAlreadySaved() {
+    const newSearchForArticles = newsCards;
+    newSearchForArticles.map((searchedCard) => {
+      savedArticles.map((savedArticle) => {
+        searchedCard.isSaved = false;
+        if (searchedCard.url === savedArticle.link) {
+          searchedCard._id = savedArticle._id;
+          searchedCard.isSaved = true;
+        }
+      });
+      setNewsCards(newSearchForArticles);
+    });
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('articlesFound')) {
+      setNewsCards(JSON.parse(localStorage.getItem('articlesFound')));
+      setSearchKeyword(localStorage.getItem('keyword'));
+      setSearchMade(true);
+      searchIfCardIsAlreadySaved();
+    }
   }, []);
+
+  useEffect(() => {
+    searchIfCardIsAlreadySaved();
+  }, [newsCards]);
 
   return (
     <BrowserRouter>
@@ -265,6 +274,7 @@ function App(props) {
               searchMade={searchMade}
               isLoggedIn={isLoggedIn}
               handleArticleSave={handleArticleSave}
+              toggleArticle={toggleArticle}
             />
             <About />
             <Footer />
@@ -306,18 +316,3 @@ function App(props) {
 }
 
 export default App;
-
-// function handleRegister(password, email) {
-//   auth
-//     .register(password, email)
-//     .then((res) => {
-//       if (res.ok) {
-//         setIsRegistered(true);
-//         setIsInfoPopupOpen(true);
-//       } else {
-//         setIsRegistered(false);
-//         setIsInfoPopupOpen(true);
-//       }
-//     })
-//     .catch((err) => console.log(err));
-// }
