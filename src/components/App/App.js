@@ -47,6 +47,8 @@ function App(props) {
   });
 
   function searchForNewsArticles(searchKeyword) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('articlesFound');
     setSearchMade(true);
     setSearchInProgress(true);
     newsApi
@@ -57,13 +59,13 @@ function App(props) {
           setSearchInProgress(false);
           localStorage.setItem('articlesFound', JSON.stringify(data.articles));
           localStorage.setItem('keyword', searchKeyword);
+          searchIfCardIsAlreadySaved();
         } else {
           localStorage.removeItem('articlesFound');
           localStorage.removeItem('keyword');
           setSearchInProgress(false);
           setNewsCards([]);
         }
-        searchIfCardIsAlreadySaved();
       })
       .catch((err) => console.log(err));
   }
@@ -72,9 +74,20 @@ function App(props) {
     baseUrl: 'https://news-alex.herokuapp.com',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      authorization: `Bearer ${token}`,
     },
   });
+
+  function toggleArticle(article) {
+    if (article.isSaved) {
+      article.isSaved = false;
+      handleDeleteSavedArticle(article._id);
+    } else {
+      handleArticleSave(article);
+      article.isSaved = true;
+    }
+  }
 
   function handleArticleSave(newsCard) {
     mainApi
@@ -121,30 +134,6 @@ function App(props) {
       });
   }
 
-  function toggleArticle(article) {
-    if (article.isSaved) {
-      article.isSaved = false;
-      handleDeleteSavedArticle(article._id);
-    } else {
-      handleArticleSave(article);
-      article.isSaved = true;
-    }
-  }
-
-  function searchIfCardIsAlreadySaved() {
-    const newSearchForArticles = newsCards;
-    newSearchForArticles.map((searchedCard) => {
-      savedArticles.map((savedArticle) => {
-        searchedCard.isSaved = false;
-        if (searchedCard.url === savedArticle.link) {
-          searchedCard._id = savedArticle._id;
-          searchedCard.isSaved = true;
-        }
-      });
-      setNewsCards(newSearchForArticles);
-    });
-  }
-
   function handleRegister(username, email, password) {
     console.log(username, email, password);
     auth
@@ -185,6 +174,7 @@ function App(props) {
     localStorage.removeItem('token');
     localStorage.removeItem('articlesFound');
     localStorage.removeItem('keyword');
+    // setEmail('');
   }
 
   useEffect(() => {
@@ -197,7 +187,7 @@ function App(props) {
           if (res) {
             console.log(res);
             setCurrentUser(res);
-            // showSavedArticles();
+            showSavedArticles();
             setIsLoggedIn(true);
             // setEmail(res.email);
           } else {
@@ -207,6 +197,20 @@ function App(props) {
         .catch((err) => console.log(err));
     }
   }, [token]);
+
+  function searchIfCardIsAlreadySaved() {
+    const newSearchForArticles = newsCards;
+    newSearchForArticles.map((searchedCard) => {
+      savedArticles.map((savedArticle) => {
+        searchedCard.isSaved = false;
+        if (searchedCard.url === savedArticle.link) {
+          searchedCard._id = savedArticle._id;
+          searchedCard.isSaved = true;
+        }
+      });
+      setNewsCards(newSearchForArticles);
+    });
+  }
 
   useEffect(() => {
     if (localStorage.getItem('articlesFound')) {
