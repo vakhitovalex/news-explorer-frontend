@@ -185,15 +185,15 @@ function App(props) {
       .authorize(email, password)
       .then((response) => response.json())
       .then((data) => {
-        if (!data) {
-          throw new Error('User Not Found');
-        }
+        console.log(data.token);
         if (data.token) {
           setToken(localStorage.setItem('token', data.token));
           setIsLoggedIn(true);
           setIsSignInPopupOpen(false);
           setEmail('');
           setPassword('');
+        } else if (!data) {
+          throw new Error('User Not Found');
         }
       })
       .catch((err) => console.log(err));

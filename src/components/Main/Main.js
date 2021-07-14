@@ -1,9 +1,12 @@
+import React, { useContext } from 'react';
 import './Main.css';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import Preloader from '../Preloader/Preloader';
 import Header from '../Header/Header';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Main(props) {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <>
       <Header
