@@ -37,6 +37,10 @@ function App(props) {
   const [searchInProgress, setSearchInProgress] = useState(false);
   const [searchMade, setSearchMade] = useState(false);
 
+  // useEffect(() => {
+  //   toggleArticle();
+  // }, [newsCards, searchInProgress]);
+
   function openSignInPopup() {
     setIsSignInPopupOpen(true);
   }
@@ -76,30 +80,22 @@ function App(props) {
   });
 
   function searchForNewsArticles(searchKeyword) {
-    localStorage.removeItem('keyword');
-    localStorage.removeItem('articlesFound');
     setSearchMade(true);
     setSearchInProgress(true);
-
-    console.log(searchKeyword);
     newsApi
       .getNewsArticles(searchKeyword)
       .then((data) => {
         if (data.totalResults !== 0) {
           setSearchInProgress(false);
-          console.log(data.articles);
           setNewsCards(data.articles);
-          console.log(newsCards);
           localStorage.setItem('articlesFound', JSON.stringify(data.articles));
           localStorage.setItem('keyword', searchKeyword);
-          //
         } else {
-          // localStorage.removeItem('articlesFound');
-          // localStorage.removeItem('keyword');
+          localStorage.removeItem('articlesFound');
+          localStorage.removeItem('keyword');
           setSearchInProgress(false);
           setNewsCards([]);
         }
-        // searchIfCardIsAlreadySaved();
       })
       .catch((err) => console.log(err));
   }
@@ -115,11 +111,12 @@ function App(props) {
 
   function toggleArticle(article) {
     if (article.isSaved) {
-      article.isSaved = false;
       handleDeleteSavedArticle(article._id);
+      article.isSaved = false;
     } else {
       handleArticleSave(article);
       article.isSaved = true;
+      console.log(article);
     }
   }
 
@@ -157,7 +154,7 @@ function App(props) {
   function handleDeleteSavedArticle(articleId) {
     mainApi
       .deleteArticle(articleId)
-      .then((res) => {
+      .then(() => {
         const arrayWithoutDeletedArticle = savedArticles.filter(
           (article) => article._id !== articleId
         );
@@ -169,7 +166,6 @@ function App(props) {
   }
 
   function handleRegister(username, email, password) {
-    console.log(username, email, password);
     auth
       .register(username, email, password)
       .then((res) => {
@@ -219,7 +215,6 @@ function App(props) {
         .then((res) => res.json())
         .then((res) => {
           if (res) {
-            console.log(res);
             setCurrentUser(res);
             showSavedArticles();
             setIsLoggedIn(true);
@@ -231,33 +226,31 @@ function App(props) {
         .catch((err) => console.log(err));
     }
   }, [token]);
+  // function searchIfCardIsAlreadySaved() {
+  //     setNewsCards(newSearchForArticles);
+  //   }
 
-  function searchIfCardIsAlreadySaved() {
-    const newSearchForArticles = newsCards;
-    newSearchForArticles.map((searchedCard) => {
-      savedArticles.map((savedArticle) => {
-        searchedCard.isSaved = false;
-        if (searchedCard.url === savedArticle.link) {
-          searchedCard._id = savedArticle._id;
-          searchedCard.isSaved = true;
-        }
-      });
-      setNewsCards(newSearchForArticles);
+  const newSearchForArticles = newsCards;
+  newSearchForArticles.map((newSearchArticle) => {
+    // console.log(newSearchArticle); url
+    // newSearchArticle.isSaved = false;
+    savedArticles.map((savedArticle) => {
+      if (savedArticle.link === newSearchArticle.url) {
+        console.log(newSearchArticle);
+        newSearchArticle._id = savedArticle._id;
+        newSearchArticle.isSaved = true;
+      }
     });
-  }
+  });
 
   useEffect(() => {
     if (localStorage.getItem('articlesFound')) {
       setNewsCards(JSON.parse(localStorage.getItem('articlesFound')));
       setSearchKeyword(localStorage.getItem('keyword'));
       setSearchMade(true);
-      searchIfCardIsAlreadySaved();
+      // searchIfCardIsAlreadySaved();
     }
   }, []);
-
-  useEffect(() => {
-    searchIfCardIsAlreadySaved();
-  }, [newsCards]);
 
   return (
     <BrowserRouter>
