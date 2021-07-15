@@ -192,7 +192,7 @@ function App(props) {
           setIsSignInPopupOpen(false);
           setEmail('');
           setPassword('');
-        } else if (!data) {
+        } else {
           throw new Error('User Not Found');
         }
       })
