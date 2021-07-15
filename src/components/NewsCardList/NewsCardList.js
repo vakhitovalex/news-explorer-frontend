@@ -45,6 +45,7 @@ function NewsCardList(props) {
               handleArticleSave={props.handleArticleSave}
               isSaved={newsCard.isSaved}
               toggleArticle={props.toggleArticle}
+              openSignUpPopup={props.openSignUpPopup}
             />
           ))}
         </ul>

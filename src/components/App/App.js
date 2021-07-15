@@ -276,6 +276,7 @@ function App(props) {
               searchForNewsArticles={searchForNewsArticles}
               handleLogout={handleLogout}
               signinClick={openSignInPopup}
+              openSignUpPopup={openSignUpPopup}
               setSearchKeyword={setSearchKeyword}
             />
             <About />

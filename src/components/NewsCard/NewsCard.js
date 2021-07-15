@@ -8,7 +8,6 @@ function NewsCard(props) {
   function handleStatusChange() {
     props.toggleArticle(props.newsCard);
   }
-
   console.log(props.isSaved);
 
   return (
@@ -43,7 +42,11 @@ function NewsCard(props) {
                 ${props.isSaved && 'newscard__save-flag_saved'}`
                 : `newscard__save-flag_nonactive`
             }
-            onClick={props.isLoggedIn ? () => handleStatusChange() : undefined}
+            onClick={
+              props.isLoggedIn
+                ? () => handleStatusChange()
+                : () => props.openSignUpPopup()
+            }
           ></button>
         )}
         <span className='newscard__message'>Sign in to save</span>

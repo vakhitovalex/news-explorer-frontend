@@ -29,6 +29,7 @@ function Main(props) {
               handleArticleSave={props.handleArticleSave}
               // isSaved={props.isSaved}
               toggleArticle={props.toggleArticle}
+              openSignUpPopup={props.openSignUpPopup}
             />
           ))}
       </main>
