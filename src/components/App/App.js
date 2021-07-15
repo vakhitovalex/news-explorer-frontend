@@ -187,7 +187,8 @@ function App(props) {
       .then((data) => {
         console.log(data.token);
         if (data.token) {
-          setToken(localStorage.setItem('token', data.token));
+          localStorage.setItem('token', data.token);
+          setToken(localStorage.getItem('token'));
           setIsLoggedIn(true);
           setIsSignInPopupOpen(false);
           setEmail('');
@@ -196,6 +197,7 @@ function App(props) {
           throw new Error('User Not Found');
         }
       })
+
       .catch((err) => console.log(err));
   }
 
@@ -204,7 +206,6 @@ function App(props) {
     localStorage.removeItem('token');
     localStorage.removeItem('articlesFound');
     localStorage.removeItem('keyword');
-    // setEmail('');
   }
 
   useEffect(() => {
@@ -226,14 +227,10 @@ function App(props) {
         .catch((err) => console.log(err));
     }
   }, [token]);
-  // function searchIfCardIsAlreadySaved() {
-  //     setNewsCards(newSearchForArticles);
-  //   }
 
   const newSearchForArticles = newsCards;
   newSearchForArticles.map((newSearchArticle) => {
     // console.log(newSearchArticle); url
-    // newSearchArticle.isSaved = false;
     savedArticles.map((savedArticle) => {
       if (savedArticle.link === newSearchArticle.url) {
         console.log(newSearchArticle);
@@ -248,7 +245,6 @@ function App(props) {
       setNewsCards(JSON.parse(localStorage.getItem('articlesFound')));
       setSearchKeyword(localStorage.getItem('keyword'));
       setSearchMade(true);
-      // searchIfCardIsAlreadySaved();
     }
   }, []);
 
@@ -257,14 +253,6 @@ function App(props) {
       <CurrentUserContext.Provider value={currentUser}>
         <Switch>
           <Route exact path='/'>
-            {/* <Header
-              signinClick={openSignInPopup}
-              searchKeyword={searchKeyword}
-              setSearchKeyword={setSearchKeyword}
-              searchForNewsArticles={searchForNewsArticles}
-              isLoggedIn={isLoggedIn}
-              handleLogout={handleLogout}
-            /> */}
             <Main
               newsCards={newsCards}
               searchKeyword={searchKeyword}
@@ -292,6 +280,7 @@ function App(props) {
             showSavedArticles={showSavedArticles}
             handleLogout={handleLogout}
             handleDeleteSavedArticle={handleDeleteSavedArticle}
+            token={token}
           />
           <Footer />
         </Switch>

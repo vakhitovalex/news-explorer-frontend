@@ -10,7 +10,7 @@ import './SavedArticles.css';
 function SavedArticles(props) {
   useEffect(() => {
     props.showSavedArticles();
-  }, []);
+  }, [props.token]);
 
   return (
     <>
