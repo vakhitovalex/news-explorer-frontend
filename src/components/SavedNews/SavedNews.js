@@ -1,19 +1,23 @@
-import NewsCard from '../NewsCard/NewsCard';
-import './SavedNews.css';
+// import React, { useEffect, useState } from 'react';
+// import NewsCard from '../NewsCard/NewsCard';
+// import NewsCardList from '../NewsCardList/NewsCardList';
+// import './SavedNews.css';
 
-function SavedNews() {
-  return (
-    <section className='savednews'>
-      <div className='newscards'>
-        <div className='newscards__list'>
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-        </div>
-      </div>
-    </section>
-  );
-}
+// function SavedNews(props) {
+//   useEffect(() => {
+//     props.showSavedArticles();
+//   }, []);
 
-export default SavedNews;
+//   return (
+//     <section className='savednews'>
+//       <NewsCardList
+//         newsCards={props.newsCards}
+//         searchKeyword={props.searchKeyword}
+//         isLoggedIn={props.isLoggedIn}
+//         handleArticleSave={props.handleArticleSave}
+//       />
+//     </section>
+//   );
+// }
+
+// export default SavedNews;

@@ -7,7 +7,11 @@ import Navigation from '../Navigation/Navigation';
 function Header(props) {
   return (
     <header className='header'>
-      <Navigation signinClick={props.signinClick} />
+      <Navigation
+        isLoggedIn={props.isLoggedIn}
+        signinClick={props.signinClick}
+        handleLogout={props.handleLogout}
+      />
       <div className='header__main'>
         <h1 className='header__title'>What's going on in the world?</h1>
         <h2 className='header__subtitle'>
@@ -15,7 +19,11 @@ function Header(props) {
           account.
         </h2>
       </div>
-      <SearchForm />
+      <SearchForm
+        searchKeyword={props.searchKeyword}
+        setSearchKeyword={props.setSearchKeyword}
+        searchForNewsArticles={props.searchForNewsArticles}
+      />
     </header>
   );
 }

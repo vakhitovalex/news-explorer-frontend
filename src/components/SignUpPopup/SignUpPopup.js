@@ -47,6 +47,7 @@ function SignUpPopup(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    props.handleRegister(username, email, password);
   }
 
   return (
@@ -72,8 +73,6 @@ function SignUpPopup(props) {
           className='form__input form__input_type_email'
           placeholder='Enter email'
           required
-          minLength='2'
-          maxLength='40'
           name='email'
           noValidate
         />
@@ -93,8 +92,7 @@ function SignUpPopup(props) {
           className='form__input form__input_type_password'
           placeholder='Enter password'
           required
-          minLength='2'
-          maxLength='200'
+          minLength='8'
           name='password'
           noValidate
         />
@@ -114,8 +112,8 @@ function SignUpPopup(props) {
           className='form__input form__input_type_username'
           placeholder='Enter your username'
           required
-          minLength='2'
-          maxLength='200'
+          minLength='6'
+          maxLength='30'
           name='username'
           noValidate
         />
