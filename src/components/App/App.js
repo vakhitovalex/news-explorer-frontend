@@ -71,10 +71,10 @@ function App(props) {
   }, []);
 
   const newsApi = new NewsApi({
-    baseUrl: 'https://cors-anywhere.herokuapp.com/newsapi.org/v2/everything?q=',
+    baseUrl: 'https://newsapi.org/v2/everything?q=',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Origin': '*',
     },
     apiKey: '254138f371d945dd9250e8efa292f7d4',
   });
