@@ -7,7 +7,7 @@ export default class NewsApi {
 
   //GET https://newsapi.org/v2/everything?country=us&apiKey=[your_key]
   getNewsArticles(query) {
-    return fetch(this._baseUrl + query, {
+    return fetch(this._baseUrl + query + '&apiKey=' + this._apiKey, {
       headers: {
         'X-Api-Key': this._apiKey,
       },

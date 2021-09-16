@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import Header from '../Header/Header';
-
 import About from '../About/About';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
@@ -71,7 +69,9 @@ function App(props) {
   }, []);
 
   const newsApi = new NewsApi({
-    baseUrl: 'https://newsapi.org/v2/everything?q=',
+    //GET https://newsapi.org/v2/top-headlines?country=us&apiKey=[your_key]
+    //GET https://nomoreparties.co/news/v2/top-headlines?country=us&apiKey=[your_key]
+    baseUrl: 'https://nomoreparties.co/news/v2/top-headlines?q=',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -197,7 +197,6 @@ function App(props) {
           throw new Error('User Not Found');
         }
       })
-
       .catch((err) => console.log(err));
   }
 
@@ -233,7 +232,6 @@ function App(props) {
     // console.log(newSearchArticle); url
     savedArticles.map((savedArticle) => {
       if (savedArticle.link === newSearchArticle.url) {
-        console.log(newSearchArticle);
         newSearchArticle._id = savedArticle._id;
         newSearchArticle.isSaved = true;
       }
